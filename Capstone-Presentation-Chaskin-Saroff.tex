@@ -1,0 +1,496 @@
+% An Overview of Lie Algebra's
+% Adapted from Justin Ryan's "Examples of Lie Algebras"
+% Chaskin Saroff
+% last changed: 15 April 2015
+% feel free to make any improvements/changes you wish
+
+\documentclass[9 pt]{beamer}
+% \usepackage{default}
+\usepackage{lmodern}
+\usepackage{amsmath,amsfonts,epsfig,pgf} % ,graphicx
+
+% choose your theme
+ \usetheme{Warsaw} % Warsaw, Copenhagen, Darmstadt, Madrid, Singapore, etc...
+
+% custom SUNY Oswego color scheme
+\definecolor{oswego}{rgb}{0.15,0.4,0.15}
+\setbeamercolor*{palette primary}{fg=white, bg=oswego}
+\setbeamercolor*{palette sidebar primary}{fg=black, bg=oswego}
+\setbeamercolor{block title}{bg=black,fg=white} % bg=background, fg= foreground
+\setbeamercolor{block body}{bg=oswego,fg=black} % bg=background, fg= foreground
+\setbeamercolor{alerted text}{fg=oswego}
+\usecolortheme[named={oswego}]{structure}
+
+% something I found to get alert blocks in the Oswego color scheme
+\newenvironment<>{lakeblock}[1]{%
+  \begin{actionenv}#2%
+      \def\insertblocktitle{#1}%
+      \par%
+      \mode<presentation>{%
+\setbeamercolor{block title}{fg=white,bg=black}
+       \setbeamercolor{block body}{fg=white,bg=oswego}
+            }%
+      \usebeamertemplate{block begin}}
+    {\par\usebeamertemplate{block end}\end{actionenv}}
+
+% Oswego State logo on every page
+%\logo{\pgfputat{\pgfxy(-10.5,0.35)}{\pgfbox[center,center]
+%{\includegraphics[height=1.35cm]{oswego_logo_horiz_grn}}}}
+
+% commutative diagrams with XY-pic
+\usepackage[all]{xy}
+\SelectTips{cm}{}
+% make \mathscr, TeX \cal, and Euler script *all* available
+% (notice the new command names to avoid overlap and/or confusion)
+\usepackage{mathrsfs}
+\let\rscr=\mathscr % use \rscr{} for Ralph Smith fancy script
+\let\mathscr=\relax
+\let\mcal=\mathcal % use \mcal{} for TeX \cal script
+\usepackage{eucal}
+\let\escr=\mathcal % use \escr{} for Euler script
+\let\mathcal=\relax
+% a better "bar" thanks to Donald Arsenau -- see \pbar infra
+\usepackage{accents}
+
+% title page information 
+\title[Recovering the Metric - An Overview of Lie Agebra's]{Recovering the Metric - An Overview of Lie Agebra's}
+\author[C.\, Saroff]{Chaskin Saroff}
+\institute[SUNY Oswego]{Oswego State University\\ Department of Mathematics}
+\date[16 Sep 2014]{16 September 2014}
+
+% new math commands
+\newcommand{\at}[1]{\emph{\alert{#1}}}
+\newcommand{\ad}[1]{\text{ad}_{#1}}
+\newcommand{\add}[1]{\ad{#1}^\dagger}
+\newcommand{\br}[2]{\left[ #1, #2 \right]}
+\newcommand{\bre}{\br{\ }{\,}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\h}{\lag{h}}
+\newcommand{\inp}[2]{\langle #1, #2 \rangle}
+\newcommand{\inpe}{\inp{\ }{\,}}
+\newcommand{\lag}[1]{\mfrak{#1}}
+\newcommand{\mfrak}[1]{\mathfrak{#1}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\a}{\alpha}
+\newcommand{\surj}{\rightarrow\kern-.82em\rightarrow}
+\newcommand{\tQ}{\widetilde{Q}}
+\renewcommand{\v}{\lal{v}}
+\newcommand{\z}{\lal{z}}
+\newcommand{\V}{\mathfrak{g}}
+\newcommand{\fg}{\mathfrak{g}}
+\newcommand{\fz}{\mathfrak{z}}
+\newcommand{\fv}{\mathfrak{v}}
+\newcommand{\fh}{\mathfrak{h}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\FF}{\mathbb{F}}
+
+
+% colored text commands
+\newcommand{\red}[1]{{\color{red} #1}}
+\newcommand{\grn}[1]{{\color{green} #1}}
+\newcommand{\blu}[1]{{\color{blue} #1}}
+\newcommand{\ylw}[1]{{\color{yellow} #1}}
+\newcommand{\mgn}[1]{{\color{magenta} #1}}
+\newcommand{\cyn}[1]{{\color{cyan} #1}}
+
+\begin{document}
+
+\section{Definition and Examples}
+
+
+\begin{frame}{}
+\vspace{1.35 cm} 
+ 
+ \titlepage
+ 
+\includegraphics[height=1.35cm]{oswego_logo_horiz_grn}
+
+\end{frame}
+
+% \begin{frame}{}
+%
+% \end{frame}
+
+% \begin{frame}{Outline}
+%   \begin{center}
+%     \begin{minipage}[]{.85\textwidth}
+%       \tableofcontents
+%     \end{minipage}
+%   \end{center}
+% \end{frame}
+
+\subsection{Definition}
+
+\note{So the Lie Algebra is a \emph{vector space}. Does anyone recognize
+a similar operator, maybe from calulus or physics, that takes two vectors
+and produces a vector?}
+\begin{frame}{Definition}
+A \emph{\alert{Lie Algebra}} is a (finite-dimensional) vector space $\fg$
+together with a bilinear multiplication $\bre : \fg \times \fg \to \fg$
+that satisfies three properties: \pause
+
+\smallskip
+
+\begin{enumerate}
+\item $\br{x}{x} = 0$ for all $x \in \fg$,
+\pause
+
+\
+
+\item $\br{\br{x}{y}}{z} + \br{\br{y}{z}}{x} + \br{\br{z}{x}}{y} = 0$ for
+all $x, y, z \in V$.
+and
+\pause
+
+\
+
+\item  $\br{x+y}{z} = \br{x}{z}+\br{y}{z}\quad \text{and} \quad 
+    \br{\a x}{y}=\br{x}{\a    y}=\a\br{x}{y}$ 
+\end{enumerate}
+\pause
+
+\
+
+Property 1 is known as \emph{\alert{alternating}}, property 2 is known
+as the \emph{\alert{Jacobi Identity}} and property 3 is known as 
+\emph{\alert{bilinearity}}.
+\pause
+
+\
+
+Property 1 and 3 imply another property called \emph{\alert{skew symmetry}}\,:
+
+\smallskip
+
+\begin{enumerate}
+\item $\br{x}{y} = -\br{y}{x}$ for all $x, y \in V$. 
+\end{enumerate}
+\pause 
+
+\
+
+The product $\bre$ is known as a \emph{\alert{Lie bracket}} on $V$.
+
+\end{frame}
+
+\subsection{Examples}
+
+\begin{frame}{skew-symmetry}
+By bilinearity, every alternating product is also skew-symmetric,          regardless of the characteristic of the underlying field. Indeed, if [ , ] is alternating then
+\pause
+        \begin{align}
+            0 &= [x + y, x + y] 
+            \\&= [x + y, x] + [x + y, y]
+            \\&= [x,x] + [y, x] + [x + y, y]
+            \\&= [x,x] + [y, x] + [x, y] + [y, y]
+            \\0&=         [x, y] + [y, x]
+            \\\implies [x,y] &= -[y,x]
+        \end{align}
+\pause
+Conversely, if $\br{}{}$ is skew-symmetric, then
+$\br{x}{x}+\br{x}{x}$ = 0 implies that 2[x,x] = 0. Now we see that this implies [x,x] = 0
+so long as our field is not of characteristic 2, for in those spaces 2 = 0 and we
+can deduce nothing about [x,x].
+\end{frame}
+
+\begin{frame}
+An \emph{inner product} on the vector $\fg$ is a \emph{symmetric, non-degenerate, bilinear and positive definite}
+function on $\fg$.  That is, an inner product on $\fg$ is a function $\langle\cdot,\cdot\rangle:\fg\times\fg\to\RR$
+that satifies the following properties:
+For $x,y,z \in \fg$
+\pause
+\begin{enumerate}
+    \item $\langle x,y \rangle = \langle y,x \rangle$
+        \pause
+    \item If $\langle x,y \rangle = 0 \quad \forall y \in \fg$
+        \\then $x = \Vec{0}$
+        \pause
+    \item $\langle x+y,z \rangle = \langle x,z \rangle + \langle y,z \rangle$
+        \\and $\a \langle x,y \rangle = \langle \a x,y \rangle = \langle x,\a y \rangle$
+        \pause
+    \item $\langle x,x \rangle \geq 0$
+        \\and $\langle x,x\rangle = 0 \implies x=\Vec{0}$
+        \pause
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{A First Example}
+Let $V$ be any vector space, and define
+$$
+\br{x}{y} = 0 \text{\ \ for\ all\ } x,y \in V.
+$$
+\pause
+
+\
+
+Clearly $\bre$ is alternating:
+$$
+\br{x}{x} = 0 \text{\ \ for\ all\ } x \in V.
+$$
+\pause
+
+\
+
+And the Jacobi Identity is trivial:
+\pause
+\begin{eqnarray*}
+\br{\br{x}{y}}{z} + \br{\br{y}{z}}{x} + \br{\br{z}{x}}{y} & = & 
+	\br{0}{z} + \br{0}{x} + \br{0}{y} \\
+	& = & 0 + 0 + 0 = 0.
+\end{eqnarray*}
+\pause
+
+\end{frame}
+
+\begin{frame}{$\R^3$ as a non-Abelian Lie Algebra}
+Let $x = (x_1, x_2, x_3)$ and $y = (y_1, y_2, y_3)$. The \at{cross product}
+of $x$ with $y$ is defined by
+$$
+x \times y = (x_2y_3 - x_3y_2, x_3y_1 - x_1y_3, x_1y_2 - x_2y_1).
+$$
+\pause
+
+The cross product is skew symmetric:
+$$
+x \times y = - y \times x \text{\ \ for\ all\ } x,y \in \R^3.
+$$
+\pause
+
+Using some identities from Calc III, we can show that the cross product satisfies
+the Jacobi Identity:
+\pause
+\begin{eqnarray*}
+& & \hspace{-1.5 cm} (x \times y) \times z + (y \times z) \times x + (z \times x) \times y
+\pause
+\\ & = & 
+\red{(x \cdot z)y} - \blu{(y \cdot z)x} + \grn{(y\cdot x)z} - \red{(z \cdot x)y} +
+\blu{(z \cdot y)x} - \grn{(x \cdot y)z}
+\pause
+\\ & = & 0.
+\end{eqnarray*}
+\end{frame}
+
+\begin{frame}{$\h_3$ : The Heisenberg Algebra}
+Consider a 3-dimensional vector space with basis vectors $x, y, z$.
+\pause
+Define a Lie bracket on this space by 
+$$
+\br{x}{y} = z,
+$$
+with all other brackets equal to 0.
+\pause
+This is called the \at{Heisenberg Algebra}, and is denoted by $\lag{h}_3$.
+\pause
+
+\
+
+The basis vectors $x, y$, and $z$ can be represented by the following matrices
+$$
+x = \begin{pmatrix}
+1 & \red{1} & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{pmatrix},\ \ \ 
+y = \begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & \red{1} \\
+0 & 0 & 1
+\end{pmatrix},\ \ \ \text{and}\ \ \ 
+z = \begin{pmatrix}
+1 & 0 & \red{1} \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{pmatrix}.
+$$
+\pause
+
+Then
+$$
+\begin{pmatrix}
+1 & \red{1} & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{pmatrix} \begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & \red{1} \\
+0 & 0 & 1
+\end{pmatrix} ``-" \begin{pmatrix}
+1 & 0 & 0 \\
+0 & 1 & \red{1} \\
+0 & 0 & 1
+\end{pmatrix} \begin{pmatrix}
+1 & \red{1} & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{pmatrix} = \begin{pmatrix}
+1 & 0 & \red{1} \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{pmatrix}.
+$$
+\pause
+$\bullet\ \lag{h}_3$ is \emph{not} a subalgebra of $\lag{gl}(3,\R)$ because it doesn't have
+the same bracket.
+\end{frame}
+
+\begin{frame}{$\h_{2k+1}$ : Higher Dimensional Heisenberg Algebras}
+Higher odd-dimensional analogues of the Heisenberg algebra can also be defined.
+\pause
+
+\
+
+Consider $\R^{2k + 1}$, $k \geq 1$, with basis vectors $x_1, x_2, \hdots, x_k$,
+$y_1, y_2, \hdots, y_k$, and $z$.
+\pause
+Define a Lie bracket on these generators \emph{via}
+$$
+\br{x_i}{x_j} = 0, \ \ \br{y_i}{y_j} = 0,\ \ \br{x_i}{y_j} = \delta_{ij},
+\ \ \text{and}\ \ \br{z}{\ } = 0.
+$$
+\pause
+
+A general element of this space can be represented by a matrix of the form
+$$
+X = \begin{pmatrix}
+1 & x_1 & x_2 & \cdots & z \\
+0 & 1 & 0 & \cdots & y_1 \\
+0 & 0 & 1 & \cdots & y_2 \\
+\vdots & & & \ddots & \vdots \\
+0 & 0 & 0 & \cdots & 1
+\end{pmatrix}
+$$
+\end{frame}
+
+\section{Some Geometry}
+
+\subsection{Inner Products}
+
+\begin{frame}{Inner Products}
+An \at{inner product} on a vector space $V$ is a non-degenerate, symmetric,
+bilinear function $\inpe :V \times V \to \R$.
+\pause
+\begin{enumerate}
+\item If $\inp{x}{y} = 0$ for all $y \in V$, then $x$ must be $0$;
+\pause
+
+\item $\inp{x}{y} = \inp{y}{x}$ for all $x,y \in V$;
+\pause
+
+\item $\inp{ax + by}{z} = a\inp{x}{z} + b\inp{y}{z}$ for all $x,y,z \in V$, $a, b, \in \R$.
+\end{enumerate}
+\pause
+
+\
+
+{\bf Example} The \at{dot product} on $\R^n$:
+\pause
+Let $x, y \in \R^n$; then $x \cdot y = x^Ty$.
+\pause
+
+\
+
+{\bf Example} The \at{Minkowski inner product} on $\R^n$:
+\pause
+Let $x = (t,x_1,x_2,x_3)$ and 
+$y = (s, y_1, y_2, y_3)$ be two vectors in $\R^4$.
+\pause
+Then the Minkowski inner product of
+$x$ and $y$ is given by
+$$
+\inp{x}{y} = -(ts) + x_1y_1 + x_2y_2 + x_3y_3.
+$$
+\pause
+
+This is the inner product that gives rise to Einstein's Special Relativity!
+\end{frame}
+
+\subsection{Encoding Geometry via Algebra}
+
+\begin{frame}{Adjoints of Adjoints}
+If you put an inner product on a Lie algebra (rather than just a vector space),
+then you will have two different types of products on the space.
+\pause
+
+\
+
+The \at{adjoint representation} of a Lie algebra $(\lag{g},\bre)$ on itself is
+the function defined by
+$$
+\ad{x}y = \br{x}{y}.
+$$
+\pause
+Fixing $x \in \lag{g}$, $\ad{x} = \br{x}{\ }$ becomes a function from $\lag{g}$
+to itself.
+\pause
+One can then define a map $j(x) :\lag{g} \to \lag{g}$ by the formula
+$$
+\inp{\br{x}{y}}{z} = \inp{y}{j(x)z}
+$$
+for all $y, z \in \lag{g}$.
+\pause
+
+\
+
+The map $j(x)$ is called the \at{adjoint} to $\ad{x}$ with respect to the
+inner product $\inpe$. (Confusing, I know.)
+\end{frame}
+
+\begin{frame}{$j$-maps}
+The equation that we used to define $j(x)$,
+$$
+\inp{\br{x}{y}}{z} = \inp{y}{j(x)z}
+$$
+could be re-written to look like
+\pause
+$$
+\inp{\ad{x}y}{z} = \inp{y}{\add{x}z}.
+$$
+\pause
+Now we could define $j(x) = \add{x} : \lag{g} \to \lag{g}$.
+\pause
+
+\
+
+The $j$-maps are extremely useful because they simultaneously encode information
+about the algebraic structure and geometric structure of the Lie algebra $\lag{g}$.
+\pause
+
+\
+
+This makes the computation of many complicated geometric objects--such as
+curvatures--into ``simple" calculations in linear algebra!
+\end{frame}
+
+\section*{}
+\subsection*{}
+
+\begin{frame}{Lie Algebra Seminar}
+There is a ``Group Study Seminar'' on Lie Algebras that meets every week!
+
+\
+\begin{center}
+{\bf Day:} Thursdays
+
+\smallskip
+
+{\bf Time:} 5:30 -- 6:30 pm
+
+\smallskip
+
+{\bf Room:} Math Commons
+\end{center}
+
+\
+
+We'll start with a ``review'' of vector spaces, then spend a lot of time building
+examples. Eventually we'll prove some theorems, and study a little geometry
+(time permitting).
+\end{frame}
+
+\end{document}
