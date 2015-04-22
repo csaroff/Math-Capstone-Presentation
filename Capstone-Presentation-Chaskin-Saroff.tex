@@ -98,6 +98,29 @@
 \newcommand{\mgn}[1]{{\color{magenta} #1}}
 \newcommand{\cyn}[1]{{\color{cyan} #1}}
 
+% tiks packages
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usepackage{filecontents}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+
+\begin{filecontents*}{pic.tikz}
+    \begin{tikzpicture}
+        \draw (-4,4) -- (1,2);
+        \draw (1, 2) -- (4,4);
+        \draw (-1,6) -- (4,4);
+        \draw (-1,6) -- (-4,4);
+        \draw [-] (0,8) -- (0,4);
+        \draw [-] (0,2.4) -- (0,0);
+        %\draw [dashed] (4,0) -- (4,3);
+        \node [right] at (0, 8) {$\fz$};
+        \node [below] at (4,4) {$\fv$};
+    \end{tikzpicture}
+\end{filecontents*}
+
+
 \begin{document}
 
 \section{Definition and Examples}
@@ -198,7 +221,7 @@ so long as our field is not of characteristic 2, for in those spaces 2 = 0 and w
 can deduce nothing about [x,x].
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Inner Product}
 An \emph{inner product} on the vector $\fg$ is a \emph{symmetric, non-degenerate, bilinear and positive definite}
 function on $\fg$.  That is, an inner product on $\fg$ is a function $\langle\cdot,\cdot\rangle:\fg\times\fg\to\RR$
 that satifies the following properties:
@@ -219,9 +242,20 @@ For $x,y,z \in \fg$
 \end{enumerate}
 \end{frame}
 
+\begin{frame}{The Center}
+    %\begin{definition}
+        The \emph{center} of a Lie Algebra, $\fg$ is
+        \pause
+        \\\[\fz=\{z \in \fg \mid [z,x]
+        = \Vec{0} \; \forall x \in \fg\}.\]
+        \pause
+        \\A vector, $z$, of $\fg$ is said to be in the center of $\fg$ if
+        \\\[[ x,z] = \Vec{0} \; \forall x \in \fg.\]
+    %\end{definition}
+\end{frame}
 
-\begin{frame}{A First Example}
-Let $V$ be any vector space, and define
+\begin{frame}{One-Step Nilpotence}
+Let $\fg$ be any vector space, and define
 $$
 \br{x}{y} = 0 \text{\ \ for\ all\ } x,y \in V.
 $$
@@ -238,12 +272,16 @@ $$
 \
 
 And the Jacobi Identity is trivial:
+
 \pause
 \begin{eqnarray*}
 \br{\br{x}{y}}{z} + \br{\br{y}{z}}{x} + \br{\br{z}{x}}{y} & = & 
 	\br{0}{z} + \br{0}{x} + \br{0}{y} \\
 	& = & 0 + 0 + 0 = 0.
 \end{eqnarray*}
+\pause
+\
+This Algebra is called \emph{Abelian} or \emph{One-Step Nilpotent}
 \pause
 
 \end{frame}
@@ -279,7 +317,7 @@ the Jacobi Identity:
 \begin{frame}{$\h_3$ : The Heisenberg Algebra}
 Consider a 3-dimensional vector space with basis vectors $x, y, z$.
 \pause
-Define a Lie bracket on this space by 
+Define a Lie bracket on this space by
 $$
 \br{x}{y} = z,
 $$
@@ -288,55 +326,13 @@ with all other brackets equal to 0.
 This is called the \at{Heisenberg Algebra}, and is denoted by $\lag{h}_3$.
 \pause
 
-\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=30mm]{pic.tikz} %input file
+    \label{fig:pic} %label name
+    \caption{\footnotesize The Heisenberg Algebra, $\fh$} %caption
+\end{figure}
 
-The basis vectors $x, y$, and $z$ can be represented by the following matrices
-$$
-x = \begin{pmatrix}
-1 & \red{1} & 0 \\
-0 & 1 & 0 \\
-0 & 0 & 1
-\end{pmatrix},\ \ \ 
-y = \begin{pmatrix}
-1 & 0 & 0 \\
-0 & 1 & \red{1} \\
-0 & 0 & 1
-\end{pmatrix},\ \ \ \text{and}\ \ \ 
-z = \begin{pmatrix}
-1 & 0 & \red{1} \\
-0 & 1 & 0 \\
-0 & 0 & 1
-\end{pmatrix}.
-$$
-\pause
-
-Then
-$$
-\begin{pmatrix}
-1 & \red{1} & 0 \\
-0 & 1 & 0 \\
-0 & 0 & 1
-\end{pmatrix} \begin{pmatrix}
-1 & 0 & 0 \\
-0 & 1 & \red{1} \\
-0 & 0 & 1
-\end{pmatrix} ``-" \begin{pmatrix}
-1 & 0 & 0 \\
-0 & 1 & \red{1} \\
-0 & 0 & 1
-\end{pmatrix} \begin{pmatrix}
-1 & \red{1} & 0 \\
-0 & 1 & 0 \\
-0 & 0 & 1
-\end{pmatrix} = \begin{pmatrix}
-1 & 0 & \red{1} \\
-0 & 1 & 0 \\
-0 & 0 & 1
-\end{pmatrix}.
-$$
-\pause
-$\bullet\ \lag{h}_3$ is \emph{not} a subalgebra of $\lag{gl}(3,\R)$ because it doesn't have
-the same bracket.
 \end{frame}
 
 \begin{frame}{$\h_{2k+1}$ : Higher Dimensional Heisenberg Algebras}
@@ -388,26 +384,16 @@ bilinear function $\inpe :V \times V \to \R$.
 
 \
 
-{\bf Example} The \at{dot product} on $\R^n$:
+{\bf Example} The \at{dot product} on $\R^3$:
 \pause
-Let $x, y \in \R^n$; then $x \cdot y = x^Ty$.
+Let $x, y \in \R^3$; then $x \cdot y = x^Ty$.  The dot product is given by
 \pause
+\[
+    \langle x,y \rangle =  x_1y_1 + x_2y_2 + x_3y_3
+\]
 
 \
 
-{\bf Example} The \at{Minkowski inner product} on $\R^n$:
-\pause
-Let $x = (t,x_1,x_2,x_3)$ and 
-$y = (s, y_1, y_2, y_3)$ be two vectors in $\R^4$.
-\pause
-Then the Minkowski inner product of
-$x$ and $y$ is given by
-$$
-\inp{x}{y} = -(ts) + x_1y_1 + x_2y_2 + x_3y_3.
-$$
-\pause
-
-This is the inner product that gives rise to Einstein's Special Relativity!
 \end{frame}
 
 \subsection{Encoding Geometry via Algebra}
@@ -470,27 +456,11 @@ curvatures--into ``simple" calculations in linear algebra!
 \section*{}
 \subsection*{}
 
-\begin{frame}{Lie Algebra Seminar}
-There is a ``Group Study Seminar'' on Lie Algebras that meets every week!
-
-\
-\begin{center}
-{\bf Day:} Thursdays
+\begin{frame}{Acknowledgements}
+\smallskip
 
 \smallskip
 
-{\bf Time:} 5:30 -- 6:30 pm
-
-\smallskip
-
-{\bf Room:} Math Commons
-\end{center}
-
-\
-
-We'll start with a ``review'' of vector spaces, then spend a lot of time building
-examples. Eventually we'll prove some theorems, and study a little geometry
-(time permitting).
 \end{frame}
 
 \end{document}
