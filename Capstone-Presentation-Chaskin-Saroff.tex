@@ -531,6 +531,24 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
     Formally, $L_{ij} = [e_i, e_j]$
     $$
      L = \begin{pmatrix}
+               \zvec& L_{12}  & \cdots & L_{1n} \\
+               -L_{12}& \zvec & \cdots & L_{2n} \\
+               \vdots &       & \ddots & \vdots \\
+               -L_{1n}&-L_{2n}& \cdots & \zvec
+        \end{pmatrix}
+    $$
+    \\
+    Recall from before the adjoint map, $\ad{e_1}{} : \fg \to \fg$ to
+    itself.  Can anyone see a matrix representation of $\ad{e1}{}$?
+\end{frame}
+
+\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
+    In order to do math with Lie Algebras on a computer,
+    we would like to represent the Lie Bracket in a matrix form.
+    Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
+    Formally, $L_{ij} = [e_i, e_j]$
+    $$
+     L = \begin{pmatrix}
          \tikzmark{left}\zvec& L_{12}  & \cdots & L_{1n} \tikzmark{right}\\
             \DrawBox[thick]
                -L_{12}& \zvec & \cdots & L_{2n} \\
@@ -538,7 +556,45 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
                -L_{1n}&-L_{2n}& \cdots & \zvec
         \end{pmatrix}
     $$
+    \\
+    Recall from before the adjoint map, $\ad{e_1}{} : \fg \to \fg$ to
+    itself.  Can anyone see a matrix representation of $\ad{e1}{}$?
 \end{frame}
+\begin{frame}
+    It's nice to see that we can \emph{encode} the bracket into a matrix
+    representation, but how can we use that encoding to as the Lie Bracket
+    ``map''?
+    \\Notice that we can retrieve information about the bases.
+    \\$\br{e_1}{e_2} = L_{12}$
+    $$
+     L = \begin{pmatrix}
+         \zvec& \tikzmark{left}L_{12}\tikzmark{right} & \cdots & L_{1n} \\
+            \DrawBox[thick]
+               -L_{12}& \zvec & \cdots & L_{2n} \\
+               \vdots &       & \ddots & \vdots \\
+               -L_{1n}&-L_{2n}& \cdots & \zvec
+        \end{pmatrix}
+    $$
+    \\So it will be enough find a way to write all Lie Brackets as a linear
+    combination of basis brackets.
+\end{frame}
+
+\begin{frame}[Lie Bracket as Linear Combination of Bases]
+    We can write $\br{x}{y}$ as a linear combination their component vectors's
+    brackets.
+    Let $x,y \in \fg$ with
+    \\$x=w_1e_1 + w_2e_2$
+    \\$y=v_1e_1 + v_2e_2$
+    \begin{align}
+        \text{So} \br{x}{y} &= \br{w_1e_1 + w_2e_2}{v_1e_1 + v_2e_2}
+            \\&= \br{w_1e_1}{v_1e_1 + v_2e_2} + \br{w_2e_2}{v_1e_1 + v_2e_2}
+            \\&= \br{w_1e_1}{v_1e_1} + \br{w_1e_1}{v_2e_2}+ \br{w_2e_2}{v_1e_1} + \br{w_2e_2}{v_2e_2}
+            \\&= w_1v_1\br{e_1}{e_1} + w_1v_2\br{e_1}{e_2}+ w_2v_1\br{e_2}{e_1} + w_2v_2\br{e_2}{e_2}
+            \\&= w_1v_1L_{11} + w_1v_2L_{12} + w_2v_1L_{21}+ w_2v_2L_{22}
+    \end{align}
+\end{frame}
+\note{Now you may be thinking that we have a way of encoding information about
+the adjoint maps on the bases, but what about some arbitrary element $x$?}
 
 \section*{}
 \subsection*{}
