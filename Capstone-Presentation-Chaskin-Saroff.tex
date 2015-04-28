@@ -52,7 +52,7 @@
 % a better "bar" thanks to Donald Arsenau -- see \pbar infra
 \usepackage{accents}
 
-% title page information 
+% title page information
 \title[Recovering the Metric - An Overview of Lie Agebra's]{Recovering the Metric - An Overview of Lie Agebra's}
 \author[C.\, Saroff]{Chaskin Saroff}
 \institute[SUNY Oswego]{Oswego State University\\ Department of Mathematics}
@@ -88,6 +88,7 @@
 \newcommand{\CC}{\mathbb{C}}
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\FF}{\mathbb{F}}
+\newcommand{\zvec}{\mathbf{0}}
 
 
 % colored text commands
@@ -100,6 +101,7 @@
 
 % tiks packages
 \usepackage{tikz}
+\usetikzlibrary{calc}
 \usepackage{tikzscale}
 \usepackage{filecontents}
 \usepackage{caption}
@@ -120,6 +122,21 @@
     \end{tikzpicture}
 \end{filecontents*}
 
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+\newcommand{\DrawBox}[1][]{%
+    \tikz[overlay,remember picture]{
+    \draw[red,#1]
+      ($(left)+(-0.2em,0.9em)$) rectangle
+      ($(right)+(0.2em,-0.3em)$);}
+}
+
+\NewDocumentCommand{\highlight}{O{blue!40} m m}{%
+    \draw[mycolor=#1] (#2.north west)rectangle (#3.south east);
+}
+
+\NewDocumentCommand{\fhighlight}{O{blue!40} m m}{%
+    \draw[myfillcolor=#1] (#2.north west)rectangle (#3.south east);
+}
 
 \begin{document}
 
@@ -127,10 +144,10 @@
 
 
 \begin{frame}{}
-\vspace{1.35 cm} 
- 
+\vspace{1.35 cm}
+
  \titlepage
- 
+
 \includegraphics[height=1.35cm]{oswego_logo_horiz_grn}
 
 \end{frame}
@@ -221,36 +238,36 @@ so long as our field is not of characteristic 2, for in those spaces 2 = 0 and w
 can deduce nothing about [x,x].
 \end{frame}
 
-\begin{frame}{Inner Product}
-An \emph{inner product} on the vector $\fg$ is a \emph{symmetric, non-degenerate, bilinear and positive definite}
-function on $\fg$.  That is, an inner product on $\fg$ is a function $\langle\cdot,\cdot\rangle:\fg\times\fg\to\RR$
-that satifies the following properties:
-For $x,y,z \in \fg$
-\pause
-\begin{enumerate}
-    \item $\langle x,y \rangle = \langle y,x \rangle$
-        \pause
-    \item If $\langle x,y \rangle = 0 \quad \forall y \in \fg$
-        \\then $x = \Vec{0}$
-        \pause
-    \item $\langle x+y,z \rangle = \langle x,z \rangle + \langle y,z \rangle$
-        \\and $\a \langle x,y \rangle = \langle \a x,y \rangle = \langle x,\a y \rangle$
-        \pause
-    \item $\langle x,x \rangle \geq 0$
-        \\and $\langle x,x\rangle = 0 \implies x=\Vec{0}$
-        \pause
-\end{enumerate}
-\end{frame}
+%\begin{frame}{Inner Product}
+%An \emph{inner product} on the vector $\fg$ is a \emph{symmetric, non-degenerate, bilinear and positive definite}
+%function on $\fg$.  That is, an inner product on $\fg$ is a function $\langle\cdot,\cdot\rangle:\fg\times\fg\to\RR$
+%that satifies the following properties:
+%For $x,y,z \in \fg$
+%\pause
+%\begin{enumerate}
+%    \item $\langle x,y \rangle = \langle y,x \rangle$
+%        \pause
+%    \item If $\langle x,y \rangle = 0 \quad \forall y \in \fg$
+%        \\then $x = \zvec$
+%        \pause
+%    \item $\langle x+y,z \rangle = \langle x,z \rangle + \langle y,z \rangle$
+%        \\and $\a \langle x,y \rangle = \langle \a x,y \rangle = \langle x,\a y \rangle$
+%        \pause
+%    \item $\langle x,x \rangle \geq 0$
+%        \\and $\langle x,x\rangle = 0 \implies x=\zvec$
+%        \pause
+%\end{enumerate}
+%\end{frame}
 
 \begin{frame}{The Center}
     %\begin{definition}
         The \emph{center} of a Lie Algebra, $\fg$ is
         \pause
         \\\[\fz=\{z \in \fg \mid [z,x]
-        = \Vec{0} \; \forall x \in \fg\}.\]
+        = \zvec \; \forall x \in \fg\}.\]
         \pause
         \\A vector, $z$, of $\fg$ is said to be in the center of $\fg$ if
-        \\\[[ x,z] = \Vec{0} \; \forall x \in \fg.\]
+        \\\[[ x,z] = \zvec \; \forall x \in \fg.\]
     %\end{definition}
 \end{frame}
 
@@ -451,6 +468,76 @@ about the algebraic structure and geometric structure of the Lie algebra $\lag{g
 
 This makes the computation of many complicated geometric objects--such as
 curvatures--into ``simple" calculations in linear algebra!
+\end{frame}
+
+\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
+    In order to do math with Lie Algebras on a computer,
+    we would like to represent the Lie Bracket in a matrix form.
+    \pause
+    Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
+    Formally, $L_{ij} = [e_i, e_j]$
+    \pause
+
+    $$
+     L = \begin{pmatrix}
+        L_{11} & L_{12} & \cdots & L_{1n} \\
+        L_{21} & L_{22} & \cdots & L_{2n} \\
+        \vdots &        & \ddots & \vdots \\
+        L_{n1} & L_{n2} & \cdots & L_{nn}
+    \end{pmatrix}
+    $$
+\pause
+What is special about $[e_i,e_i]$?
+\pause
+\\$[e_i,e_i] = \zvec$
+\end{frame}
+
+\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
+    In order to do math with Lie Algebras on a computer,
+    we would like to represent the Lie Bracket in a matrix form.
+    Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
+    Formally, $L_{ij} = [e_i, e_j]$
+    $$
+     L = \begin{pmatrix}
+        \zvec& L_{12} & \cdots & L_{1n} \\
+        L_{21} & \zvec& \cdots & L_{2n} \\
+        \vdots &        & \ddots & \vdots \\
+        L_{n1} & L_{n2} & \cdots & \zvec
+    \end{pmatrix}
+    $$
+\pause
+Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
+\pause
+\\$[e_i, e_j] = -[e_j, e_i]$
+\end{frame}
+\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
+    In order to do math with Lie Algebras on a computer,
+    we would like to represent the Lie Bracket in a matrix form.
+    Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
+    Formally, $L_{ij} = [e_i, e_j]$
+    $$
+     L = \begin{pmatrix}
+        \zvec& L_{12}  & \cdots & L_{1n} \\
+        -L_{12}& \zvec & \cdots & L_{2n} \\
+        \vdots &       & \ddots & \vdots \\
+        -L_{1n}&-L_{2n}& \cdots & \zvec
+    \end{pmatrix}
+    $$
+\end{frame}
+\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
+    In order to do math with Lie Algebras on a computer,
+    we would like to represent the Lie Bracket in a matrix form.
+    Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
+    Formally, $L_{ij} = [e_i, e_j]$
+    $$
+     L = \begin{pmatrix}
+         \tikzmark{left}\zvec& L_{12}  & \cdots & L_{1n} \tikzmark{right}\\
+            \DrawBox[thick]
+               -L_{12}& \zvec & \cdots & L_{2n} \\
+               \vdots &       & \ddots & \vdots \\
+               -L_{1n}&-L_{2n}& \cdots & \zvec
+        \end{pmatrix}
+    $$
 \end{frame}
 
 \section*{}
