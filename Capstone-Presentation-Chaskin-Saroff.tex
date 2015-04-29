@@ -1,7 +1,7 @@
 % An Overview of Lie Algebra's
 % Adapted from Justin Ryan's "Examples of Lie Algebras"
-% Chaskin Saroff
-% last changed: 15 April 2015
+% Chaskin Saroff and Alexander Jansing
+% last changed: 29 April 2015
 % feel free to make any improvements/changes you wish
 
 \documentclass[9 pt]{beamer}
@@ -20,6 +20,10 @@
 \setbeamercolor{block body}{bg=oswego,fg=black} % bg=background, fg= foreground
 \setbeamercolor{alerted text}{fg=oswego}
 \usecolortheme[named={oswego}]{structure}
+\def\today{\number\day\space\ifcase\month\or
+   January\or February\or March\or April\or May\or June\or
+   July\or August\or September\or October\or November\or December\fi
+   \space\number\year}
 
 % something I found to get alert blocks in the Oswego color scheme
 \newenvironment<>{lakeblock}[1]{%
@@ -53,10 +57,10 @@
 \usepackage{accents}
 
 % title page information
-\title[Recovering the Metric - An Overview of Lie Agebra's]{Recovering the Metric - An Overview of Lie Agebra's}
-\author[C.\, Saroff]{Chaskin Saroff}
+\title[Recovering the Metric - An Overview of Lie Agebra's]{Recovering the Metric - An Overview of Lie Algebras}
+\author[A.\, Jansing \,C.\, Saroff]{Alexander Jansing,  Chaskin Saroff}
 \institute[SUNY Oswego]{Oswego State University\\ Department of Mathematics}
-\date[16 Sep 2014]{16 September 2014}
+\date{\today}
 
 % new math commands
 \newcommand{\at}[1]{\emph{\alert{#1}}}
@@ -380,7 +384,7 @@ X = \begin{pmatrix}
 $$
 \end{frame}
 
-\section{Some Geometry}
+\section{Defining the Lie Algebra}
 
 \subsection{Inner Products}
 
