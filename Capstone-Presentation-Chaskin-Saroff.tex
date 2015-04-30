@@ -634,8 +634,11 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
     It's nice to see that we can \emph{encode} the bracket into a matrix
     representation, but how can we use that encoding to as the Lie Bracket
     ``map''?
+    \pause
     \\Notice that we can retrieve information about the bases.
+    \pause
     \\$\br{e_1}{e_2} = L_{12}$
+    \pause
     $$
      L = \begin{pmatrix}
          \zvec& \tikzmark{left}L_{12}\tikzmark{right} & \cdots & L_{1n} \\
@@ -645,27 +648,200 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
                -L_{1n}&-L_{2n}& \cdots & \zvec
         \end{pmatrix}
     $$
+    \pause
     \\So it will be enough find a way to write all Lie Brackets as a linear
     combination of basis brackets.
 \end{frame}
 
-\begin{frame}[Lie Bracket as Linear Combination of Bases]
-    We can write $\br{x}{y}$ as a linear combination their component vectors's
-    brackets.
-    Let $x,y \in \fg$ with
-    \\$x=w_1e_1 + w_2e_2$
-    \\$y=v_1e_1 + v_2e_2$
-    \begin{align}
-        \text{So} \br{x}{y} &= \br{w_1e_1 + w_2e_2}{v_1e_1 + v_2e_2}
-            \\&= \br{w_1e_1}{v_1e_1 + v_2e_2} + \br{w_2e_2}{v_1e_1 + v_2e_2}
-            \\&= \br{w_1e_1}{v_1e_1} + \br{w_1e_1}{v_2e_2}+ \br{w_2e_2}{v_1e_1} + \br{w_2e_2}{v_2e_2}
-            \\&= w_1v_1\br{e_1}{e_1} + w_1v_2\br{e_1}{e_2}+ w_2v_1\br{e_2}{e_1} + w_2v_2\br{e_2}{e_2}
-            \\&= w_1v_1L_{11} + w_1v_2L_{12} + w_2v_1L_{21}+ w_2v_2L_{22}
-    \end{align}
+\begin{frame}{Lie Bracket as Linear Combination of Bases}
+    %I had to use uncover here instead of pause because align ``does wicked
+    %things too beamer''
+    \uncover<00->{We can write $\br{x}{y}$ as a linear combination their component vectors's
+brackets.}
+    \uncover<01->{\\Let's look at an example of a 2 dimensional space}
+    \uncover<02->{\\Let $x,y \in \fg$ with}
+    \uncover<03->{\\$x=w_1e_1 + w_2e_2$}
+    \uncover<04->{\\$y=v_1e_1 + v_2e_2$}
+    \begin{align*}
+        \uncover<05->{\text{So} \br{x}{y} &= \br{w_1e_1 + w_2e_2}{v_1e_1 + v_2e_2}}
+        \uncover<06->{\\&= \br{w_1e_1}{v_1e_1 + v_2e_2} + \br{w_2e_2}{v_1e_1 + v_2e_2}}
+        \uncover<07->{\\&= \br{w_1e_1}{v_1e_1} + \br{w_1e_1}{v_2e_2}+ \br{w_2e_2}{v_1e_1} + \br{w_2e_2}{v_2e_2}}
+        \uncover<08->{\\&= w_1v_1\br{e_1}{e_1} + w_1v_2\br{e_1}{e_2}+ w_2v_1\br{e_2}{e_1} + w_2v_2\br{e_2}{e_2}}
+        \uncover<09->{\\&= w_1v_1L_{11} + w_1v_2L_{12} + w_2v_1L_{21}+ w_2v_2L_{22}}
+    \end{align*}
+    \uncover<10->{This means that the Lie Bracket is fully described by the matrix, L}
 \end{frame}
-\note{Now you may be thinking that we have a way of encoding information about
-the adjoint maps on the bases, but what about some arbitrary element $x$?}
-
+\begin{frame}{Generalizing the Lie Bracket}
+    As before, we'll investigate the 2 dimensional example.
+    \pause
+    Let
+    $$
+     L = \begin{pmatrix}
+            L_{11} & L_{12} \\
+            L_{21} & L_{22}
+         \end{pmatrix},\ \ 
+    $$
+    \pause
+    with
+    $$
+     x = \begin{pmatrix}
+            w_1\\
+            w_2
+         \end{pmatrix},\ \ 
+     y = \begin{pmatrix}
+             v_1\\
+             v_2
+         \end{pmatrix}
+    $$
+    \pause
+    $$
+    x^{T}L = 
+    \begin{pmatrix}
+        w_1 w_2
+    \end{pmatrix}
+     \begin{pmatrix}
+            L_{11} & L_{12} \\
+            L_{21} & L_{22}
+     \end{pmatrix}
+     =
+     \begin{pmatrix}
+         w_1L_{11} + w_2L_{12}, w_1L_{12}+w_2L_{22}
+     \end{pmatrix}
+    $$
+    \pause
+    $$
+        (x^TL)y = 
+        \begin{pmatrix}
+            w_1L_{11} + w_2L_{12}, w_1L_{12}+w_2L_{22}
+        \end{pmatrix}
+        \begin{pmatrix}
+            v_1 \\
+            v_2
+        \end{pmatrix}
+    $$
+    \pause
+    $$
+    =   \begin{pmatrix}
+            w_1v_1L_{11} + w_2v_1L_{12} + w_1v_2L_{12}+w_2v_2L_{22}
+        \end{pmatrix}
+    $$
+    \pause
+    That is
+    $\br{x}{y} = x^TLy$
+\end{frame}
+\begin{frame}{Example Abelian $\RR^3$}
+    What does Abelian $\RR^3$ look like in this form?
+    \pause
+    \\Recall that a Lie Algebra is Abelian if
+    \pause
+    \\$\br{x}{y} = \zvec \ \forall x,y \in \RR^3$
+    \pause
+    $$
+    \begin{pmatrix}
+            \zvec & \zvec & \zvec
+          \\\zvec & \zvec & \zvec
+          \\\zvec & \zvec & \zvec
+    \end{pmatrix}
+    $$
+    \pause
+    What is the center of Abelian $\RR^3$
+\end{frame}
+\begin{frame}{Examples of Cross Product over $\RR^3$}
+    What does the the cross product on $\RR^3$ look like in this form?
+    \pause
+    \\$\br{e_1}{e_2}=e_3$
+    \\$\br{e_1}{e_3}=e_2$
+    \\$\br{e_2}{e_3}=e_1$
+    \pause
+    $$
+    \begin{pmatrix}
+          \zvec & e_3   & -e_2
+        \\-e_3  & \zvec & e_1
+        \\e_2   & -e_1  & \zvec
+    \end{pmatrix}
+    $$
+    \pause
+    What is the center of $\RR^3$ with the cross product?
+\end{frame}
+\begin{frame}{$\h_3$'s Lie Bracket}
+    How could the three dimensional Heisenberg Algebra be represented?
+    \pause
+    \\$\h_3$ is two-step nilpotent
+    \pause
+    \\$\br{\br{x}{y}}{z} \ \forall x,y,z \in \h_3$
+    \pause
+    $$
+    \begin{pmatrix}
+          \zvec & e_3   & \zvec
+        \\-e_3  & \zvec & \zvec
+        \\\zvec & \zvec & \zvec
+    \end{pmatrix}
+    $$
+    \pause
+    \\What is the center of $\h_3$?
+    \pause
+    \\The center is the span of $\{e_3\}$.
+\end{frame}
+\begin{frame}{Inner Product as a Matrix}
+    The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
+    \pause
+    \\$\inp{e_i}{e_j} = E_{ij}$
+    \pause
+    $$
+        E = \begin{pmatrix}
+                E_{11} & E_{12} & \cdots & E_{1n} \\
+                E_{21} & E_{22} & \cdots & E_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                E_{n1} & E_{n2} & \cdots & E_{nn}
+            \end{pmatrix}
+    $$
+    \pause
+    Recall that $\inp{e_i}{e_j} = \inp{e_j}{e_i}$
+\end{frame}
+%Transition from previous frame showing that e_12 = e_21
+\begin{frame}{Inner Product as a Matrix}
+    The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
+    \\$\inp{e_i}{e_j} = E_{ij}$
+    $$
+        E = \begin{pmatrix}
+            E_{11} & \tikzmark{left}E_{12}\tikzmark{right} & \cdots & E_{1n} \\
+            \DrawBox[thick]
+            \tikzmark{left}E_{21}\tikzmark{right} & E_{22} & \cdots & E_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                E_{n1} & E_{n2} & \cdots & E_{nn}
+            \end{pmatrix}
+            \DrawBox[thick]
+    $$
+\end{frame}
+\begin{frame}{Inner Product as a Matrix}
+    The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
+    \\$\inp{e_i}{e_j} = E_{ij}$
+    $$
+        E = \begin{pmatrix}
+            E_{11} & \tikzmark{left}E_{12}\tikzmark{right} & \cdots & E_{1n} \\
+            \DrawBox[thick]
+            \tikzmark{left}E_{12}\tikzmark{right} & E_{22} & \cdots & E_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                E_{1n} & E_{1 n-1} & \cdots & E_{nn}
+            \end{pmatrix}
+            \DrawBox[thick]
+    $$
+\end{frame}
+\begin{frame}{Dot Product on $\RR^3$}
+    The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
+    \pause
+    \\$\inp{e_i}{e_j} = 0$
+    \pause
+    \\$\inp{e_i}{e_i} = 1$
+    \pause
+    $$
+        E = \begin{pmatrix}
+                1 & 0 & 0\\
+                0 & 1 & 0\\
+                0 & 0 & 1\\
+            \end{pmatrix}
+    $$
+\end{frame}
 \section*{}
 \subsection*{}
 
