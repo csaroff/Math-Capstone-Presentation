@@ -1,0 +1,19 @@
+    \begin{tikzpicture}
+%%%%%%%%%%%%%%%%%L_{i, j}%%%%%%%%%%%%%%%%%%%%%%%
+        \node [right] at (-.5, 0) {\small $L_{i, j}$ \normalsize};
+        \draw[red] (.5, .5) -- (1, 1);   %bottom
+        \draw[red] (1, 1) -- (.5, 1.5);
+        \draw[red] (.5, 1.5) -- (0, 1);
+        \draw[red] (0, 1) -- (.5, .5);
+%%%%%%%%%%%%%%%%%L_{i, j}^T%%%%%%%%%%%%%%%%%%%%%
+        \node [right] at (-4.25, -.5) {\footnotesize $L_{i, j}^T$ \normalsize};
+        \draw[red] (-1.5, -.5) -- (-1, 0); %bottom
+        \draw[red] (-1, 0) -- (-1.5, .5);
+        \draw[red] (-1.5, .5) -- (-2, 0);
+        \draw[red] (-2, 0) -- (-1.5, -.5);
+%%%%%%%%%%%%%%%%%%%bottom%%%%%%%%%%%%%%%%%%%%%%%
+        \draw  (0, -3) -- (4, 1);
+        \draw  (4, 1) -- (-1, 4);
+        \draw (-1, 4) -- (-5, 0);
+        \draw (-5, 0) -- (0, -3);
+    \end{tikzpicture}
