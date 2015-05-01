@@ -93,6 +93,10 @@
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\FF}{\mathbb{F}}
 \newcommand{\zvec}{\mathbf{0}}
+\newcommand{\lal}[1]{\mathfrak{#1}}
+\newcommand{\lan}{\lal{n}}
+\newcommand{\lav}{\lal{v}}
+\newcommand{\laz}{\lal{z}}
 
 
 % colored text commands
@@ -102,6 +106,27 @@
 \newcommand{\ylw}[1]{{\color{yellow} #1}}
 \newcommand{\mgn}[1]{{\color{magenta} #1}}
 \newcommand{\cyn}[1]{{\color{cyan} #1}}
+
+%Stuff from Justin's example
+%\renewcommand{\a}{\vect{a}}
+%\newcommand{\abs}[1]{\vert #1 \vert}
+%\renewcommand{\b}{\vect{b}}
+%\newcommand{\bve}{\pbar{\ve}}
+%\newcommand{\dps}{\displaystyle}
+%\newcommand{\ds}{\oplus}
+%\newcommand{\name}{{\bf Name:}\underline{\hspace{3 in}}}
+%\newcommand{\nin}{\noindent}
+%\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+%\newcommand{\pg}[1]{\paragraph{#1}}
+%\newcommand{\ph}[1]{\phantom{#1}}
+%\renewcommand{\span}[1]{\textrm{span}\left\{ #1 \right\}}
+\renewcommand{\t}{\texttt{t}}
+\newcommand{\T}{\textsc{T}}
+\renewcommand{\u}{\vect{u}}
+\renewcommand{\v}{\vect{v}}
+\newcommand{\ve}{\varepsilon}
+\newcommand{\vc}[1]{\left\langle #1 \right\rangle}
+\newcommand{\vect}[1]{\mathbf{#1}}
 
 % tiks packages
 \usepackage{tikz}
@@ -253,7 +278,7 @@ that satisfies three properties: \pause
 \
 
 \item $\br{\br{x}{y}}{z} + \br{\br{y}{z}}{x} + \br{\br{z}{x}}{y} = 0$ for
-all $x, y, z \in V$.
+all $x, y, z \in \fg$.
 and
 \pause
 
@@ -278,13 +303,13 @@ Property 1 and 3 imply another property called \emph{\alert{skew symmetry}}\,:
 \smallskip
 
 \begin{enumerate}
-\item $\br{x}{y} = -\br{y}{x}$ for all $x, y \in V$. 
+\item $\br{x}{y} = -\br{y}{x}$ for all $x, y \in \fg$. 
 \end{enumerate}
 \pause 
 
 \
 
-The product $\bre$ is known as a \emph{\alert{Lie bracket}} on $V$.
+The product $\bre$ is known as a \emph{\alert{Lie bracket}} on $\fg$.
 
 \end{frame}
 
@@ -302,7 +327,7 @@ By bilinearity, every alternating product is also skew-symmetric,          regar
             \\\implies [x,y] &= -[y,x]
         \end{align}
 \pause
-Conversely, if $\br{}{}$ is skew-symmetric, then
+Conversely, if $\bre$ is skew-symmetric, then
 $\br{x}{x}+\br{x}{x}$ = 0 implies that 2[x,x] = 0. Now we see that this implies [x,x] = 0
 so long as our field is not of characteristic 2, for in those spaces 2 = 0 and we
 can deduce nothing about [x,x].
@@ -331,7 +356,7 @@ can deduce nothing about [x,x].
 
 \begin{frame}{The Center}
     %\begin{definition}
-        The \emph{center} of a Lie Algebra, $\fg$ is
+        The \emph{center} of a Lie Algebra, $fg$ is
         \pause
         \\\[\fz=\{z \in \fg \mid [z,x]
         = \zvec \; \forall x \in \fg\}.\]
@@ -344,7 +369,7 @@ can deduce nothing about [x,x].
 \begin{frame}{One-Step Nilpotence}
 Let $\fg$ be any vector space, and define
 $$
-\br{x}{y} = 0 \text{\ \ for\ all\ } x,y \in V.
+\br{x}{y} = 0 \text{\ \ for\ all\ } x,y \in \fg.
 $$
 \pause
 
@@ -352,7 +377,7 @@ $$
 
 Clearly $\bre$ is alternating:
 $$
-\br{x}{x} = 0 \text{\ \ for\ all\ } x \in V.
+\br{x}{x} = 0 \text{\ \ for\ all\ } x \in \fg.
 $$
 \pause
 
@@ -422,34 +447,6 @@ This is called the \at{Heisenberg Algebra}, and is denoted by $\lag{h}_3$.
 
 \end{frame}
 
-\begin{frame}{$\h_{2k+1}$ : Higher Dimensional Heisenberg Algebras}
-Higher odd-dimensional analogues of the Heisenberg algebra can also be defined.
-\pause
-
-\
-
-Consider $\R^{2k + 1}$, $k \geq 1$, with basis vectors $x_1, x_2, \hdots, x_k$,
-$y_1, y_2, \hdots, y_k$, and $z$.
-\pause
-Define a Lie bracket on these generators \emph{via}
-$$
-\br{x_i}{x_j} = 0, \ \ \br{y_i}{y_j} = 0,\ \ \br{x_i}{y_j} = \delta_{ij},
-\ \ \text{and}\ \ \br{z}{\ } = 0.
-$$
-\pause
-
-A general element of this space can be represented by a matrix of the form
-$$
-X = \begin{pmatrix}
-1 & x_1 & x_2 & \cdots & z \\
-0 & 1 & 0 & \cdots & y_1 \\
-0 & 0 & 1 & \cdots & y_2 \\
-\vdots & & & \ddots & \vdots \\
-0 & 0 & 0 & \cdots & 1
-\end{pmatrix}
-$$
-\end{frame}
-
 \section{Defining the Lie Algebra}
 
 \subsection{Inner Products}
@@ -485,39 +482,10 @@ Let $x, y \in \R^3$; then $x \cdot y = x^Ty$.  The dot product is given by
 
 \subsection{Encoding Geometry via Algebra}
 
-\begin{frame}{Adjoints of Adjoints}
-If you put an inner product on a Lie algebra (rather than just a vector space),
-then you will have two different types of products on the space.
-\pause
-
-\
-
-The \at{adjoint representation} of a Lie algebra $(\lag{g},\bre)$ on itself is
-the function defined by
-$$
-\ad{x}y = \br{x}{y}.
-$$
-\pause
-Fixing $x \in \lag{g}$, $\ad{x} = \br{x}{\ }$ becomes a function from $\lag{g}$
-to itself.
-\pause
-One can then define a map $j(x) :\lag{g} \to \lag{g}$ by the formula
-$$
-\inp{\br{x}{y}}{z} = \inp{y}{j(x)z}
-$$
-for all $y, z \in \lag{g}$.
-\pause
-
-\
-
-The map $j(x)$ is called the \at{adjoint} to $\ad{x}$ with respect to the
-inner product $\inpe$. (Confusing, I know.)
-\end{frame}
-
 \begin{frame}{$j$-maps}
-The equation that we used to define $j(x)$,
+The equation that we used to define $j_z$,
 $$
-\inp{\br{x}{y}}{z} = \inp{y}{j(x)z}
+\inp{\br{x}{y}}{z} = \inp{y}{j_zx}
 $$
 could be re-written to look like
 \pause
@@ -525,7 +493,7 @@ $$
 \inp{\ad{x}y}{z} = \inp{y}{\add{x}z}.
 $$
 \pause
-Now we could define $j(x) = \add{x} : \lag{g} \to \lag{g}$.
+Now we could define $j_z = \add{x} : \lag{g} \to \lag{g}$.
 \pause
 
 \
@@ -841,30 +809,26 @@ brackets.}
     \pause
     \\Postive Definite: $\inp{x}{x} \ge 0 \ \text{and} \ \inp{x}{x}=0 \implies x=\zvec$
     \\And $\zvec$ canot be a basis vector because it is linearly dependent with all vectors.
-    \\So $e_{ii}>0$
+    \\So $\blu{e_{ii}>0}$
 \end{frame}
 \begin{frame}{Inner Product as a Matrix}
     The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
     \\$\inp{e_i}{e_j} = E_{ij}$
     $$
         E = \begin{pmatrix}
-            \blu{E_{11}} & \tikzmark{left}E_{12}\tikzmark{right} & \cdots & E_{1n} \\
-            \DrawBox[thick]
-            \tikzmark{left}E_{12}\tikzmark{right} & \blu{E_{22}} & \cdots & E_{2n} \\
+            \blu{E_{11}} & E_{12} & \cdots & E_{1n} \\
+            E_{12} & \blu{E_{22}} & \cdots & E_{2n} \\
             \vdots & \vdots & \blu{\ddots} & \vdots \\
             E_{1n} & E_{2n} & \cdots & \blu{E_{nn}}
             \end{pmatrix}
-            \DrawBox[thick]
     $$
-    \pause
     Recall also that the inner product has additional properties.
-    \pause
     \\Postive Definite: $\inp{x}{x} \ge 0 \ \text{and} \ \inp{x}{x}=0 \implies x=\zvec$
     \\And $\zvec$ canot be a basis vector because it is linearly dependent with all vectors.
-    \\So $e_{ii}>0$
+    \\So $\blu{e_{ii}>0}$
 \end{frame}
 \begin{frame}{Dot Product on $\RR^3$}
-    The Dot Product can be represented in the same way.
+    The Dot Product can be represented in this way.
     \pause
     \\$\inp{e_i}{e_j} = 0$
     \pause
@@ -878,6 +842,59 @@ brackets.}
             \end{pmatrix}
     $$
 \end{frame}
+
+\begin{frame}{$j$-map as a matrix}
+Recall that for any $z \in \laz$, the map $j_z :\lav \to \lav$ is defined by
+the identity
+\begin{equation}
+\inp{y}{j_z(x)}_\lav = \inp{z}{\br{x}{y}}_\laz.\label{jm}
+\end{equation}
+We wish to find a matrix $J_z$ that represents the map $j_z$. Since $j_z$ maps
+$\lav$ to itself, $J_z$ should be a matrix in $\R^{n\times n}$. Rewriting
+\eqref{jm} in matrix form, we get
+    \begin{align*}
+   \inp{y}{j_z(x)}_\lav & = \inp{z}{\br{x}{y}}_\laz \\
+    y^T E (J_z x) 		& =  z^\t(x^TLy) \\
+    y^T (EJ_z) x		& =  z^\t(-y^TLx) \\
+                        & =  - z^\t(y^TLx) \\
+                        & =  -y^T (z^\t L)x \\
+                        & =  y^T (z^\t (-L)) x \\
+                        & =  y^T (z^\t L^\T) x.
+    \end{align*}
+\end{frame}
+\begin{frame}
+The equation $y^T(EJ_z)x = y^T(z^\t L^\T) x$ must hold for arbitrary vectors
+$x$ and $y$ in $\lav$, implying that
+$$
+EJ_z = z^\t L^\T.
+$$
+Since $\det(E) \neq 0$, it is invertible and
+\begin{equation}
+J_z = E^{-1}(z^\t L^\T).
+\end{equation}
+This gives us a method to compute the $j$-map for any $z$ using only matrix
+computations. Furthermore, if $z = z_k$ is a basis vector of $\laz$, then
+$z_k^\t L^\T$ is just $(L^k)^\T$. Thus, for basis vectors $z_k$, the map
+$j_{z_k}$ is represented by the matrix
+$$
+J_{z_k} = E^{-1}(L^k)^\T.
+$$
+\end{frame}
+\begin{frame}
+Since the $j$-maps are linear, knowing how they act on a basis of $\laz$ is
+good enough. Indeed, we should be able to define a stack of $j$-maps by
+\begin{equation}
+J = E^{-1}L^\T.
+\end{equation}
+The $j$-map $j_z$ \emph{should} then be $J_z = z^\t J$.
+\end{frame}
+
+\begin{frame}{What we did}
+    Using the programming language, sage, we created a program that would
+    compute the $j$-maps of an arbitrary Lie algebra.
+
+\end{frame}
+
 \section*{}
 \subsection*{}
 
