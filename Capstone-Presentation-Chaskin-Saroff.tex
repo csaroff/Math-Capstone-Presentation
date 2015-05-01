@@ -1,4 +1,4 @@
-% An Overview of Lie Algebra's
+	% An Overview of Lie Algebra's
 % Adapted from Justin Ryan's "Examples of Lie Algebras"
 % Chaskin Saroff and Alexander Jansing	
 % last changed: 29 April 2015
@@ -191,6 +191,7 @@
         \draw (-1, 3) -- (-4, 1);
     \end{tikzpicture}
 \end{filecontents*}
+
 
 \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
 \newcommand{\DrawBox}[1][]{%
@@ -818,53 +819,17 @@ brackets.}
     \\$\inp{e_i}{e_j} = E_{ij}$
     $$
         E = \begin{pmatrix}
-            E_{11} & E_{12} & \cdots & E_{1n} \\
-            E_{12} & E_{22} & \cdots & E_{2n} \\
-                \vdots & \vdots & \ddots & \vdots \\
-                E_{1n} & E_{2n} & \cdots & E_{nn}
-            \end{pmatrix}
-    $$
-\end{frame}
-\begin{frame}{Inner Product as a Matrix}
-    The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
-    \\$\inp{e_i}{e_j} = E_{ij}$
-    $$
-        E = \begin{pmatrix}
-            E_{11} & E_{12} & \cdots & E_{1n} \\
-            E_{12} & E_{22} & \cdots & E_{2n} \\
-                \vdots & \vdots & \ddots & \vdots \\
-                E_{1n} & E_{2n} & \cdots & E_{nn}
-            \end{pmatrix}
-    $$
-    \pause
-    Recall also that the inner product has additional properties.
-    \pause
-    \\Postive Definite: $\inp{x}{x} \ge 0 \ \text{and} \ \inp{x}{x}=0 \implies x=\zvec$
-    \\And $\zvec$ canot be a basis vector because it is linearly dependent with all vectors.
-    \\So $e_{ii}>0$
-\end{frame}
-\begin{frame}{Inner Product as a Matrix}
-    The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
-    \\$\inp{e_i}{e_j} = E_{ij}$
-    $$
-        E = \begin{pmatrix}
-            \blu{E_{11}} & \tikzmark{left}E_{12}\tikzmark{right} & \cdots & E_{1n} \\
+            E_{11} & \tikzmark{left}E_{12}\tikzmark{right} & \cdots & E_{1n} \\
             \DrawBox[thick]
-            \tikzmark{left}E_{12}\tikzmark{right} & \blu{E_{22}} & \cdots & E_{2n} \\
-            \vdots & \vdots & \blu{\ddots} & \vdots \\
-            E_{1n} & E_{2n} & \cdots & \blu{E_{nn}}
+            \tikzmark{left}E_{12}\tikzmark{right} & E_{22} & \cdots & E_{2n} \\
+                \vdots & \vdots & \ddots & \vdots \\
+                E_{1n} & E_{1 n-1} & \cdots & E_{nn}
             \end{pmatrix}
             \DrawBox[thick]
     $$
-    \pause
-    Recall also that the inner product has additional properties.
-    \pause
-    \\Postive Definite: $\inp{x}{x} \ge 0 \ \text{and} \ \inp{x}{x}=0 \implies x=\zvec$
-    \\And $\zvec$ canot be a basis vector because it is linearly dependent with all vectors.
-    \\So $e_{ii}>0$
 \end{frame}
 \begin{frame}{Dot Product on $\RR^3$}
-    The Dot Product can be represented in the same way.
+    The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
     \pause
     \\$\inp{e_i}{e_j} = 0$
     \pause
