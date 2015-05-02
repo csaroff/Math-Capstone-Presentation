@@ -57,7 +57,7 @@
 \usepackage{accents}
 
 % title page information
-\title[Encoding the Bracket - An Overview of Lie Agebra's]{Encoding the Bracket - An Overview of Lie Algebras}
+\title[Recovering the Metric - An Overview of Lie Agebra's]{Recovering the Metric - An Overview of Lie Algebras}
 \author[A.\, Jansing \,C.\, Saroff]{Alexander Jansing,  Chaskin Saroff}
 \institute[SUNY Oswego]{Oswego State University\\ Department of Mathematics}
 \date{\today}
@@ -93,10 +93,6 @@
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\FF}{\mathbb{F}}
 \newcommand{\zvec}{\mathbf{0}}
-\newcommand{\lal}[1]{\mathfrak{#1}}
-\newcommand{\lan}{\lal{n}}
-\newcommand{\lav}{\lal{v}}
-\newcommand{\laz}{\lal{z}}
 
 
 % colored text commands
@@ -107,27 +103,6 @@
 \newcommand{\mgn}[1]{{\color{magenta} #1}}
 \newcommand{\cyn}[1]{{\color{cyan} #1}}
 
-%Stuff from Justin's example
-%\renewcommand{\a}{\vect{a}}
-%\newcommand{\abs}[1]{\vert #1 \vert}
-%\renewcommand{\b}{\vect{b}}
-%\newcommand{\bve}{\pbar{\ve}}
-%\newcommand{\dps}{\displaystyle}
-%\newcommand{\ds}{\oplus}
-%\newcommand{\name}{{\bf Name:}\underline{\hspace{3 in}}}
-%\newcommand{\nin}{\noindent}
-%\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
-%\newcommand{\pg}[1]{\paragraph{#1}}
-%\newcommand{\ph}[1]{\phantom{#1}}
-%\renewcommand{\span}[1]{\textrm{span}\left\{ #1 \right\}}
-\renewcommand{\t}{\texttt{t}}
-\newcommand{\T}{\textsc{T}}
-\renewcommand{\u}{\vect{u}}
-\renewcommand{\v}{\vect{v}}
-\newcommand{\ve}{\varepsilon}
-\newcommand{\vc}[1]{\left\langle #1 \right\rangle}
-\newcommand{\vect}[1]{\mathbf{#1}}
-
 % tiks packages
 \usepackage{tikz}
 \usetikzlibrary{calc}
@@ -136,86 +111,6 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{wrapfig}
-
-\begin{filecontents*}{heis.tikz}
-    \begin{tikzpicture}
-        \draw (-4,4) -- (1,2);
-        \draw (1, 2) -- (4,4);
-        \draw (-1,6) -- (4,4);
-        \draw (-1,6) -- (-4,4);
-        \draw [-] (0,8) -- (0,4);
-        \draw [-] (0,2.4) -- (0,0);
-        %\draw [dashed] (4,0) -- (4,3);
-        \node [right] at (0, 8) {$\fz$};
-        \node [below] at (4,4) {$\fv$};
-    \end{tikzpicture}
-\end{filecontents*}
-
-\begin{filecontents*}{lStack.tikz}
-    \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%top%%%%%%%%%%%%%%%%%%%%%%%%%
-        \draw (-4,4) -- (1,2);   
-        \draw (1, 2) -- (4,4);
-        \draw (-1,6) -- (4,4);
-        \draw (-1,6) -- (-4,4);
-%%%%%%%%%%%%%%%%%%%legs%%%%%%%%%%%%%%%%%%%%%%%%%
-        \draw (-4, 4) -- (-4, 1);
-        \draw (1, 2) -- (1, -1);
-        \draw (-1, 6) -- (-1, 3);
-        \draw (4, 4) -- (4, 1); 
-%%%%%%%%%%%%%%%%%L_{i, j}%%%%%%%%%%%%%%%%%%%%%%%
-        \draw (.58, 4) -- (.58, 1);        %legs
-        \draw (1.5, 4) -- (1.5, 1);
-        \draw (.95, 4.26) -- (.95, 1.26);
-        \draw (1.165, 3.7) -- (1.165, .7);
-        \draw (.58, 4) -- (.95, 4.26);      %top
-        \draw (1.5, 4) -- (1.165, 3.7);
-        \draw (.95, 4.26) -- (1.5, 4);
-        \draw (1.165, 3.7) -- (.58, 4);
-        \draw (.58, 1) -- (.95, 1.26);   %bottom
-        \draw (1.5, 1) -- (1.165, .7);
-        \draw (.95, 1.26) -- (1.5, 1);
-        \draw (1.165, .7) -- (.58, 1);
-%%%%%%%%%%%%%%%%%%%bottom%%%%%%%%%%%%%%%%%%%%%%%
-        \draw (-4, 1) -- (1, -1);
-        \draw (1, -1) -- (4, 1);
-        \draw (-1, 3) -- (4, 1);
-        \draw (-1, 3) -- (-4, 1);
-    \end{tikzpicture}
-\end{filecontents*}
-
-\begin{filecontents*}{lStackNOTOP.tikz}
-    \begin{tikzpicture}
-%%%%%%%%%%%%%%%%%%%%top%%%%%%%%%%%%%%%%%%%%%%%%%
-%        \draw (-4,4) -- (1,2);   
-%        \draw (1, 2) -- (4,4);
-%        \draw (-1,6) -- (4,4);
-%        \draw (-1,6) -- (-4,4);
-%%%%%%%%%%%%%%%%%%%legs%%%%%%%%%%%%%%%%%%%%%%%%%
-%        \draw (-4, 4) -- (-4, 1);
-%        \draw (1, 2) -- (1, -1);
-%        \draw (-1, 6) -- (-1, 3);
-%        \draw (4, 4) -- (4, 1); 
-%%%%%%%%%%%%%%%%%L_{i, j}%%%%%%%%%%%%%%%%%%%%%%%
-        \draw (.58, 4) -- (.58, 1);        %legs
-        \draw (1.5, 4) -- (1.5, 1);
-        \draw (.95, 4.26) -- (.95, 1.26);
-        \draw (1.165, 3.7) -- (1.165, .7);
-        \draw (.58, 4) -- (.95, 4.26);      %top
-        \draw (1.5, 4) -- (1.165, 3.7);
-        \draw (.95, 4.26) -- (1.5, 4);
-        \draw (1.165, 3.7) -- (.58, 4);
-        \draw (.58, 1) -- (.95, 1.26);   %bottom
-        \draw (1.5, 1) -- (1.165, .7);
-        \draw (.95, 1.26) -- (1.5, 1);
-        \draw (1.165, .7) -- (.58, 1);
-%%%%%%%%%%%%%%%%%%%bottom%%%%%%%%%%%%%%%%%%%%%%%
-        \draw (-4, 1) -- (1, -1);
-        \draw (1, -1) -- (4, 1);
-        \draw (-1, 3) -- (4, 1);
-        \draw (-1, 3) -- (-4, 1);
-    \end{tikzpicture}
-\end{filecontents*}
 
 
 \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
@@ -279,7 +174,7 @@ that satisfies three properties: \pause
 \
 
 \item $\br{\br{x}{y}}{z} + \br{\br{y}{z}}{x} + \br{\br{z}{x}}{y} = 0$ for
-all $x, y, z \in \fg$.
+all $x, y, z \in V$.
 and
 \pause
 
@@ -304,13 +199,13 @@ Property 1 and 3 imply another property called \emph{\alert{skew symmetry}}\,:
 \smallskip
 
 \begin{enumerate}
-\item $\br{x}{y} = -\br{y}{x}$ for all $x, y \in \fg$. 
+\item $\br{x}{y} = -\br{y}{x}$ for all $x, y \in V$. 
 \end{enumerate}
 \pause 
 
 \
 
-The product $\bre$ is known as a \emph{\alert{Lie bracket}} on $\fg$.
+The product $\bre$ is known as a \emph{\alert{Lie bracket}} on $V$.
 
 \end{frame}
 
@@ -328,7 +223,7 @@ By bilinearity, every alternating product is also skew-symmetric,          regar
             \\\implies [x,y] &= -[y,x]
         \end{align}
 \pause
-Conversely, if $\bre$ is skew-symmetric, then
+Conversely, if $\br{}{}$ is skew-symmetric, then
 $\br{x}{x}+\br{x}{x}$ = 0 implies that 2[x,x] = 0. Now we see that this implies [x,x] = 0
 so long as our field is not of characteristic 2, for in those spaces 2 = 0 and we
 can deduce nothing about [x,x].
@@ -370,7 +265,7 @@ can deduce nothing about [x,x].
 \begin{frame}{One-Step Nilpotence}
 Let $\fg$ be any vector space, and define
 $$
-\br{x}{y} = 0 \text{\ \ for\ all\ } x,y \in \fg.
+\br{x}{y} = 0 \text{\ \ for\ all\ } x,y \in V.
 $$
 \pause
 
@@ -378,7 +273,7 @@ $$
 
 Clearly $\bre$ is alternating:
 $$
-\br{x}{x} = 0 \text{\ \ for\ all\ } x \in \fg.
+\br{x}{x} = 0 \text{\ \ for\ all\ } x \in V.
 $$
 \pause
 
@@ -443,9 +338,37 @@ This is called the \at{Heisenberg Algebra}, and is denoted by $\lag{h}_3$.
     \centering
     \includegraphics[width=30mm]{heis.tikz} %input file
     \label{fig:pic} %label name
-    \caption{\footnotesize The Heisenberg Algebra, $\fh_3$} %caption
+    \caption{\footnotesize The Heisenberg Algebra, $\fh$} %caption
 \end{figure}
 
+\end{frame}
+
+\begin{frame}{$\h_{2k+1}$ : Higher Dimensional Heisenberg Algebras}
+Higher odd-dimensional analogues of the Heisenberg algebra can also be defined.
+\pause
+
+\
+
+Consider $\R^{2k + 1}$, $k \geq 1$, with basis vectors $x_1, x_2, \hdots, x_k$,
+$y_1, y_2, \hdots, y_k$, and $z$.
+\pause
+Define a Lie bracket on these generators \emph{via}
+$$
+\br{x_i}{x_j} = 0, \ \ \br{y_i}{y_j} = 0,\ \ \br{x_i}{y_j} = \delta_{ij},
+\ \ \text{and}\ \ \br{z}{\ } = 0.
+$$
+\pause
+
+A general element of this space can be represented by a matrix of the form
+$$
+X = \begin{pmatrix}
+1 & x_1 & x_2 & \cdots & z \\
+0 & 1 & 0 & \cdots & y_1 \\
+0 & 0 & 1 & \cdots & y_2 \\
+\vdots & & & \ddots & \vdots \\
+0 & 0 & 0 & \cdots & 1
+\end{pmatrix}
+$$
 \end{frame}
 
 \section{Defining the Lie Algebra}
@@ -453,17 +376,17 @@ This is called the \at{Heisenberg Algebra}, and is denoted by $\lag{h}_3$.
 \subsection{Inner Products}
 
 \begin{frame}{Inner Products}
-An \at{inner product} on a vector space $\fg$ is a non-degenerate, symmetric,
-bilinear function $\inpe :\fg \times \fg \to \R$.
+An \at{inner product} on a vector space $V$ is a non-degenerate, symmetric,
+bilinear function $\inpe :V \times V \to \R$.
 \pause
 \begin{enumerate}
-\item If $\inp{x}{y} = 0$ for all $y \in \fg$, then $x$ must be $0$;
+\item If $\inp{x}{y} = 0$ for all $y \in V$, then $x$ must be $0$;
 \pause
 
-\item $\inp{x}{y} = \inp{y}{x}$ for all $x,y \in \fg$;
+\item $\inp{x}{y} = \inp{y}{x}$ for all $x,y \in V$;
 \pause
 
-\item $\inp{ax + by}{z} = a\inp{x}{z} + b\inp{y}{z}$ for all $x,y,z \in \fg$, $a, b, \in \R$.
+\item $\inp{ax + by}{z} = a\inp{x}{z} + b\inp{y}{z}$ for all $x,y,z \in V$, $a, b, \in \R$.
 \end{enumerate}
 \pause
 
@@ -483,10 +406,39 @@ Let $x, y \in \R^3$; then $x \cdot y = x^Ty$.  The dot product is given by
 
 \subsection{Encoding Geometry via Algebra}
 
-\begin{frame}{$j$-maps}
-The equation that we used to define $j_z$,
+\begin{frame}{Adjoints of Adjoints}
+If you put an inner product on a Lie algebra (rather than just a vector space),
+then you will have two different types of products on the space.
+\pause
+
+\
+
+The \at{adjoint representation} of a Lie algebra $(\lag{g},\bre)$ on itself is
+the function defined by
 $$
-\inp{\br{x}{y}}{z} = \inp{y}{j_zx}
+\ad{x}y = \br{x}{y}.
+$$
+\pause
+Fixing $x \in \lag{g}$, $\ad{x} = \br{x}{\ }$ becomes a function from $\lag{g}$
+to itself.
+\pause
+One can then define a map $j(x) :\lag{g} \to \lag{g}$ by the formula
+$$
+\inp{\br{x}{y}}{z} = \inp{y}{j(x)z}
+$$
+for all $y, z \in \lag{g}$.
+\pause
+
+\
+
+The map $j(x)$ is called the \at{adjoint} to $\ad{x}$ with respect to the
+inner product $\inpe$. (Confusing, I know.)
+\end{frame}
+
+\begin{frame}{$j$-maps}
+The equation that we used to define $j(x)$,
+$$
+\inp{\br{x}{y}}{z} = \inp{y}{j(x)z}
 $$
 could be re-written to look like
 \pause
@@ -494,7 +446,7 @@ $$
 \inp{\ad{x}y}{z} = \inp{y}{\add{x}z}.
 $$
 \pause
-Now we could define $j_z = \add{x} : \lag{g} \to \lag{g}$.
+Now we could define $j(x) = \add{x} : \lag{g} \to \lag{g}$.
 \pause
 
 \
@@ -787,49 +739,17 @@ brackets.}
     \\$\inp{e_i}{e_j} = E_{ij}$
     $$
         E = \begin{pmatrix}
-            E_{11} & E_{12} & \cdots & E_{1n} \\
-            E_{12} & E_{22} & \cdots & E_{2n} \\
+            E_{11} & \tikzmark{left}E_{12}\tikzmark{right} & \cdots & E_{1n} \\
+            \DrawBox[thick]
+            \tikzmark{left}E_{12}\tikzmark{right} & E_{22} & \cdots & E_{2n} \\
                 \vdots & \vdots & \ddots & \vdots \\
-                E_{1n} & E_{2n} & \cdots & E_{nn}
+                E_{1n} & E_{1 n-1} & \cdots & E_{nn}
             \end{pmatrix}
+            \DrawBox[thick]
     $$
-\end{frame}
-\begin{frame}{Inner Product as a Matrix}
-    The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
-    \\$\inp{e_i}{e_j} = E_{ij}$
-    $$
-        E = \begin{pmatrix}
-            E_{11} & E_{12} & \cdots & E_{1n} \\
-            E_{12} & E_{22} & \cdots & E_{2n} \\
-                \vdots & \vdots & \ddots & \vdots \\
-                E_{1n} & E_{2n} & \cdots & E_{nn}
-            \end{pmatrix}
-    $$
-    \pause
-    Recall also that the inner product has additional properties.
-    \pause
-    \\Postive Definite: $\inp{x}{x} \ge 0 \ \text{and} \ \inp{x}{x}=0 \implies x=\zvec$
-    \\And $\zvec$ canot be a basis vector because it is linearly dependent with all vectors.
-    \\So $\blu{e_{ii}>0}$
-\end{frame}
-\begin{frame}{Inner Product as a Matrix}
-    The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
-    \\$\inp{e_i}{e_j} = E_{ij}$
-    $$
-        E = \begin{pmatrix}
-            \blu{E_{11}} & E_{12} & \cdots & E_{1n} \\
-            E_{12} & \blu{E_{22}} & \cdots & E_{2n} \\
-            \vdots & \vdots & \blu{\ddots} & \vdots \\
-            E_{1n} & E_{2n} & \cdots & \blu{E_{nn}}
-            \end{pmatrix}
-    $$
-    Recall also that the inner product has additional properties.
-    \\Postive Definite: $\inp{x}{x} \ge 0 \ \text{and} \ \inp{x}{x}=0 \implies x=\zvec$
-    \\And $\zvec$ canot be a basis vector because it is linearly dependent with all vectors.
-    \\So $\blu{e_{ii}>0}$
 \end{frame}
 \begin{frame}{Dot Product on $\RR^3$}
-    The Dot Product can be represented in this way.
+    The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
     \pause
     \\$\inp{e_i}{e_j} = 0$
     \pause
@@ -844,85 +764,73 @@ brackets.}
     $$
 \end{frame}
 
-\begin{frame}{$j$-map as a matrix}
-Recall that for any $z \in \laz$, the map $j_z :\lav \to \lav$ is defined by
-the identity
-\begin{equation}
-\inp{y}{j_z(x)}_\lav = \inp{z}{\br{x}{y}}_\laz.\label{jm}
-\end{equation}
-We wish to find a matrix $J_z$ that represents the map $j_z$. Since $j_z$ maps
-$\lav$ to itself, $J_z$ should be a matrix in $\R^{n\times n}$. Rewriting
-\eqref{jm} in matrix form, we get
-    \begin{align*}
-   \inp{y}{j_z(x)}_\lav & = \inp{z}{\br{x}{y}}_\laz \\
-    y^T E (J_z x) 		& =  z^\t(x^TLy) \\
-    y^T (EJ_z) x		& =  z^\t(-y^TLx) \\
-                        & =  - z^\t(y^TLx) \\
-                        & =  -y^T (z^\t L)x \\
-                        & =  y^T (z^\t (-L)) x \\
-                        & =  y^T (z^\t L^\T) x.
-    \end{align*}
-\end{frame}
-\begin{frame}
-The equation $y^T(EJ_z)x = y^T(z^\t L^\T) x$ must hold for arbitrary vectors
-$x$ and $y$ in $\lav$, implying that
-$$
-EJ_z = z^\t L^\T.
-$$
-Since $\det(E) \neq 0$, it is invertible and
-\begin{equation}
-J_z = E^{-1}(z^\t L^\T).
-\end{equation}
-This gives us a method to compute the $j$-map for any $z$ using only matrix
-computations. Furthermore, if $z = z_k$ is a basis vector of $\laz$, then
-$z_k^\t L^\T$ is just $(L^k)^\T$. Thus, for basis vectors $z_k$, the map
-$j_{z_k}$ is represented by the matrix
-$$
-J_{z_k} = E^{-1}(L^k)^\T.
-$$
-\end{frame}
-\begin{frame}
-Since the $j$-maps are linear, knowing how they act on a basis of $\laz$ is
-good enough. Indeed, we should be able to define a stack of $j$-maps by
-\begin{equation}
-J = E^{-1}L^\T.
-\end{equation}
-The $j$-map $j_z$ \emph{should} then be $J_z = z^\t J$.
-\end{frame}
 
-\begin{frame}{What we did}
-    Using the programming language, sage, we created a program that would
-    compute the $j$-maps of an arbitrary Lie algebra.
-
-\end{frame}
-
-\section*{}
+\section*{TikZ}
 \subsection*{}
+\begin{frame}{The Lie Map}
+\small
+The Lie Bracket is a matrix of vectors that can be visually represented. First, let's lay our matrix, $L$, down as if it were on a table.\\
+\pause
+            \includegraphics[width=20mm]{Lie_MX_Flat.tikz} %input file
+            \linebreak
+\pause
+            Now, let's pick out a single $L_{i, j}$ from that matrix.\\
+            \includegraphics[width=20mm]{Lie_MX_Flat_ij.tikz} %input file
+            \linebreak
+\pause
+            This is what is really lying behind that element!\\
+            \includegraphics[width=20mm]{Lie_MX_Vector.tikz} %input file
+\normalsize
 
-\begin{frame}{TikZ}
-\smallskip
+\end{frame}
 
-\smallskip
-
+\begin{frame}
+Now that we have this visualization of what an element of the $L$ mapping is, we can imagine how the whole matrix appears.\\
+            \begin{center}
+            \includegraphics[width=20mm]{Lie_MX_Flat.tikz}
+            \includegraphics[width=20mm]{Lie_MX_Flat_ij.tikz}
+            \includegraphics[width=20mm]{Lie_MX_Vector.tikz}
+            \end{center}
+            \pause
+% my crude attempt to draw a stack of matrices using picture environment
+\setlength{\unitlength}{0.25 cm}
+\begin{center}
+\begin{picture}(0,0)
+\put(-8,0){\line(1,0){16}}
+\put(-8,0){\line(1,-4){1}}
+\put(-7,-4){\line(1,0){16}}
+\put(8,0){\line(1,-4){1}}
+\put(-8,-2){\line(1,0){0.5}}
+\put(-8,-2){\line(1,-4){1}}
+\put(-7,-6){\line(1,0){16}}
+\put(9,-6){\line(-1,4){0.5}}
+\put(-8,-4){\line(1,0){0.5}}
+\put(-8,-4){\line(1,-4){1}}
+\put(-7,-8){\line(1,0){16}}
+\put(9,-8){\line(-1,4){0.5}}
+\put(10,-4){$L^1$}
+\put(10,-6){$L^2$}
+\put(10,-8){$L^3$}
+\put(10.25,-10){$\vdots$}
+\put(10,-12){$L^m$}
+\put(-7,-10){$\vdots$}
+\put(-8,-7.75){$\vdots$}
+\put(7.75,-10){$\vdots$}
+\put(1,-10){$\vdots$}
+\put(-8,-8){\line(1,0){0.75}}
+\put(-8,-8){\line(1,-4){1}}
+\put(-7,-12){\line(1,0){16}}
+\put(9,-12){\line(-1,4){0.9}}
+\put(-11,-7){$L = $}
+\end{picture}
+\end{center}
 \end{frame}
 
 \section*{}
 \subsection*{}
 
 \begin{frame}{Acknowledgements}
-    \begin{figure}
-    \centering
-    \includegraphics[width=30mm]{lStack.tikz} %input file
-    \label{fig:pic} %label name
-    \caption{\footnotesize The L-Stack} %caption
-    \end{figure}
-    
-        \begin{figure}
-    \centering
-    \includegraphics[width=30mm]{lStackNOTOP.tikz} %input file
-    \label{fig:pic} %label name
-    \caption{\footnotesize The L-Stack} %caption
-    \end{figure}
+
 
 \end{frame}
 
