@@ -57,7 +57,7 @@
 \usepackage{accents}
 
 % title page information
-\title[Recovering the Metric - An Overview of Lie Agebra's]{Recovering the Metric - An Overview of Lie Algebras}
+\title[Encoding the Bracket - An Overview of Lie Agebra's]{Encoding the Bracket - An Overview of Lie Algebras}
 \author[A.\, Jansing \,C.\, Saroff]{Alexander Jansing,  Chaskin Saroff}
 \institute[SUNY Oswego]{Oswego State University\\ Department of Mathematics}
 \date{\today}
@@ -357,7 +357,7 @@ can deduce nothing about [x,x].
 
 \begin{frame}{The Center}
     %\begin{definition}
-        The \emph{center} of a Lie Algebra, $fg$ is
+        The \emph{center} of a Lie Algebra, $\fg$ is
         \pause
         \\\[\fz=\{z \in \fg \mid [z,x]
         = \zvec \; \forall x \in \fg\}.\]
@@ -443,7 +443,7 @@ This is called the \at{Heisenberg Algebra}, and is denoted by $\lag{h}_3$.
     \centering
     \includegraphics[width=30mm]{heis.tikz} %input file
     \label{fig:pic} %label name
-    \caption{\footnotesize The Heisenberg Algebra, $\fh$} %caption
+    \caption{\footnotesize The Heisenberg Algebra, $\fh_3$} %caption
 \end{figure}
 
 \end{frame}
@@ -453,17 +453,17 @@ This is called the \at{Heisenberg Algebra}, and is denoted by $\lag{h}_3$.
 \subsection{Inner Products}
 
 \begin{frame}{Inner Products}
-An \at{inner product} on a vector space $V$ is a non-degenerate, symmetric,
-bilinear function $\inpe :V \times V \to \R$.
+An \at{inner product} on a vector space $\fg$ is a non-degenerate, symmetric,
+bilinear function $\inpe :\fg \times \fg \to \R$.
 \pause
 \begin{enumerate}
-\item If $\inp{x}{y} = 0$ for all $y \in V$, then $x$ must be $0$;
+\item If $\inp{x}{y} = 0$ for all $y \in \fg$, then $x$ must be $0$;
 \pause
 
-\item $\inp{x}{y} = \inp{y}{x}$ for all $x,y \in V$;
+\item $\inp{x}{y} = \inp{y}{x}$ for all $x,y \in \fg$;
 \pause
 
-\item $\inp{ax + by}{z} = a\inp{x}{z} + b\inp{y}{z}$ for all $x,y,z \in V$, $a, b, \in \R$.
+\item $\inp{ax + by}{z} = a\inp{x}{z} + b\inp{y}{z}$ for all $x,y,z \in \fg$, $a, b, \in \R$.
 \end{enumerate}
 \pause
 
