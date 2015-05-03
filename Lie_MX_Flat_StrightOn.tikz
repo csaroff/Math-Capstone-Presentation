@@ -1,5 +1,6 @@
     \begin{tikzpicture}
 %%%%%%%%%%%%%%%%%%%bottom%%%%%%%%%%%%%%%%%%%%%%%
+       \node [left] at (-4, 2) {\footnotesize $L$ \normalsize};
         \draw  (-2.5, 2) -- (2.5, 2);
         \draw  (-2.5, -2) -- (2.5,-2);
         \draw (-2.5, 2) -- (-2.5, -2);
