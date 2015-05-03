@@ -289,14 +289,15 @@ and
 \
 
 \item  $\br{x+y}{z} = \br{x}{z}+\br{y}{z}\quad \text{and} \quad 
-    \br{\a x}{y}=\br{x}{\a    y}=\a\br{x}{y}$ 
+    \br{\a x}{y}=\br{x}{\a    y}=\a\br{x}{y}
+    \ \forall x,y,z \in \fg \ \text{and} \ \a \in \RR$ 
 \end{enumerate}
 \pause
 
 \
 
 Property 1 is known as \emph{\alert{alternating}}, property 2 is known
-as the \emph{\alert{Jacobi Identity}} and property 3 is known as 
+as the \emph{\alert{Jacobi Identity}} and property 3 describes
 \emph{\alert{bilinearity}}.
 \pause
 
@@ -320,7 +321,8 @@ The product $\bre$ is known as a \emph{\alert{Lie bracket}} on $\fg$.
 \subsection{Examples}
 
 \begin{frame}{skew-symmetry}
-By bilinearity, every alternating product is also skew-symmetric,          regardless of the characteristic of the underlying field. Indeed, if [ , ] is alternating then
+By bilinearity, every alternating product is also skew-symmetric.
+Indeed, if [ , ] is alternating then
 \pause
         \begin{align}
             0 &= [x + y, x + y] 
@@ -337,27 +339,6 @@ so long as our field is not of characteristic 2, for in those spaces 2 = 0 and w
 can deduce nothing about [x,x].
 \end{frame}
 
-%\begin{frame}{Inner Product}
-%An \emph{inner product} on the vector $\fg$ is a \emph{symmetric, non-degenerate, bilinear and positive definite}
-%function on $\fg$.  That is, an inner product on $\fg$ is a function $\langle\cdot,\cdot\rangle:\fg\times\fg\to\RR$
-%that satifies the following properties:
-%For $x,y,z \in \fg$
-%\pause
-%\begin{enumerate}
-%    \item $\langle x,y \rangle = \langle y,x \rangle$
-%        \pause
-%    \item If $\langle x,y \rangle = 0 \quad \forall y \in \fg$
-%        \\then $x = \zvec$
-%        \pause
-%    \item $\langle x+y,z \rangle = \langle x,z \rangle + \langle y,z \rangle$
-%        \\and $\a \langle x,y \rangle = \langle \a x,y \rangle = \langle x,\a y \rangle$
-%        \pause
-%    \item $\langle x,x \rangle \geq 0$
-%        \\and $\langle x,x\rangle = 0 \implies x=\zvec$
-%        \pause
-%\end{enumerate}
-%\end{frame}
-
 \begin{frame}{The Center}
     %\begin{definition}
         The \emph{center} of a Lie Algebra, $\fg$ is
@@ -365,12 +346,14 @@ can deduce nothing about [x,x].
         \\\[\fz=\{z \in \fg \mid [z,x]
         = \zvec \; \forall x \in \fg\}.\]
         \pause
-        \\A vector, $z$, of $\fg$ is said to be in the center of $\fg$ if
-        \\\[[ x,z] = \zvec \; \forall x \in \fg.\]
+        \\Thus $z$, is in the center of $\fg$ if and only if
+        \\\[[z,x] = \zvec \; \forall x \in \fg.\]
+
+        The \emph{non-center}, $\fv$, is given by $\fv = \fg - \fz$
     %\end{definition}
 \end{frame}
 
-\begin{frame}{One-Step Nilpotence}
+\begin{frame}{A First Example: One-Step Nilpotent Lie Algebras}
 Let $\fg$ be any vector space, and define
 $$
 \br{x}{y} = 0 \text{\ \ for\ all\ } x,y \in \fg.
@@ -397,9 +380,24 @@ And the Jacobi Identity is trivial:
 \end{eqnarray*}
 \pause
 \
-This Algebra is called \emph{Abelian} or \emph{One-Step Nilpotent}
+This Algebra is called \emph{Abelian} or \emph{One-Step Nilpotent}.
 \pause
 
+\end{frame}
+
+\begin{frame}{Two-Step Nilpotent}
+
+    A Lie Algebra, $\fg$ is called \emph{two-step nilpotent} if and only if
+    \[
+        [[x,y],z] = \zvec \; \forall x,y,z \in \fg
+        \ \text{and} \ \fz \neq \fg
+    \]
+    \pause
+    \begin{enumerate}
+        \item Applying the bracket twice to any arbitrary set of three vectors in the Algebra, always returns $\zvec$.
+        \pause
+        \item Applying the bracket once to any arbitrary set of two vectors does not always return $\zvec$.
+    \end{enumerate}
 \end{frame}
 
 \begin{frame}{$\R^3$ as a non-Abelian Lie Algebra}
@@ -431,6 +429,7 @@ the Jacobi Identity:
 \end{frame}
 
 \begin{frame}{$\h_3$ : The Heisenberg Algebra}
+We can construct another example from $\RR^3$ by defining a different Lie Bracket.
 Consider a 3-dimensional vector space with basis vectors $x, y, z$.
 \pause
 Define a Lie bracket on this space by
@@ -449,6 +448,11 @@ This is called the \at{Heisenberg Algebra}, and is denoted by $\lag{h}_3$.
     \caption{\footnotesize The Heisenberg Algebra, $\fh_3$} %caption
 \end{figure}
 
+\pause
+
+Can anyone tell me if the Heisenberg Algebra is one-step nilpotent,
+two-step nilpotent, neither, or both?
+
 \end{frame}
 
 \section{Defining the Lie Algebra}
@@ -457,7 +461,7 @@ This is called the \at{Heisenberg Algebra}, and is denoted by $\lag{h}_3$.
 
 \begin{frame}{Inner Products}
 An \at{inner product} on a vector space $\fg$ is a non-degenerate, symmetric,
-bilinear function $\inpe :\fg \times \fg \to \R$.
+bilinear, postive definite function $\inpe :\fg \times \fg \to \R$.
 \pause
 \begin{enumerate}
 \item If $\inp{x}{y} = 0$ for all $y \in \fg$, then $x$ must be $0$;
@@ -467,7 +471,11 @@ bilinear function $\inpe :\fg \times \fg \to \R$.
 \pause
 
 \item $\inp{ax + by}{z} = a\inp{x}{z} + b\inp{y}{z}$ for all $x,y,z \in \fg$, $a, b, \in \R$.
+\item $\inp{x}{x} \ge 0 \ \forall x \in \fg$ and $\inp{x}{x}=0 \implies x=\zvec$
 \end{enumerate}
+\pause
+
+A Lie Algebra with an inner product is called a \emph{Metric Lie Algebra}
 \pause
 
 \
@@ -487,29 +495,25 @@ Let $x, y \in \R^3$; then $x \cdot y = x^Ty$.  The dot product is given by
 \subsection{Encoding Geometry via Algebra}
 
 \begin{frame}{$j$-maps}
-The equation that we used to define $j_z$,
-$$
-\inp{\br{x}{y}}{z} = \inp{y}{j_zx}
-$$
-could be re-written to look like
-\pause
-$$
-\inp{\ad{x}y}{z} = \inp{y}{\add{x}z}.
-$$
-\pause
-Now we could define $j_z = \add{x} : \lag{g} \to \lag{g}$.
-\pause
+    In order to seperate the interaction between the center and the non-center
+    of a two-step nilpotent lie algebra, we can define a map, $j_z:\fv \to \fv$.
+    \pause
+    \\$j_z$ is defined by the equation
+    $$
+    \inp{\br{x}{y}}{z} = \inp{y}{j_zx}
+    $$
+    \pause
 
-\
+    \
 
-The $j$-maps are extremely useful because they simultaneously encode information
-about the algebraic structure and geometric structure of the Lie algebra $\lag{g}$.
-\pause
+    The $j$-maps are extremely useful because they simultaneously encode information
+    about the algebraic structure and geometric structure of the Lie algebra $\lag{g}$.
+    \pause
 
-\
+    \
 
-This makes the computation of many complicated geometric objects--such as
-curvatures--into ``simple" calculations in linear algebra!
+    This makes the computation of many seemingly complicated objects
+    ``simple" calculations in linear algebra!
 \end{frame}
 
 \begin{frame}{The Lie Bracket as a Matrix with Vector entries}
@@ -517,7 +521,7 @@ curvatures--into ``simple" calculations in linear algebra!
     we would like to represent the Lie Bracket in a matrix form.
     \pause
     Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
-    Formally, $L_{ij} = [e_i, e_j]$
+    \\Formally, $L_{ij} = [e_i, e_j]$
     \pause
 
     $$
@@ -533,78 +537,9 @@ What is special about $[e_i,e_i]$?
 \pause
 \\$[e_i,e_i] = \zvec$
 \end{frame}
-
-\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
-    In order to do math with Lie Algebras on a computer,
-    we would like to represent the Lie Bracket in a matrix form.
-    Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
-    Formally, $L_{ij} = [e_i, e_j]$
-    $$
-     L = \begin{pmatrix}
-        \zvec& L_{12} & \cdots & L_{1n} \\
-        L_{21} & \zvec& \cdots & L_{2n} \\
-        \vdots &        & \ddots & \vdots \\
-        L_{n1} & L_{n2} & \cdots & \zvec
-    \end{pmatrix}
-    $$
-\pause
-Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
-\pause
-\\$[e_i, e_j] = -[e_j, e_i]$
-\end{frame}
-\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
-    In order to do math with Lie Algebras on a computer,
-    we would like to represent the Lie Bracket in a matrix form.
-    Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
-    Formally, $L_{ij} = [e_i, e_j]$
-    $$
-     L = \begin{pmatrix}
-        \zvec& L_{12}  & \cdots & L_{1n} \\
-        -L_{12}& \zvec & \cdots & L_{2n} \\
-        \vdots &       & \ddots & \vdots \\
-        -L_{1n}&-L_{2n}& \cdots & \zvec
-    \end{pmatrix}
-    $$
-\end{frame}
-\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
-    In order to do math with Lie Algebras on a computer,
-    we would like to represent the Lie Bracket in a matrix form.
-    Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
-    Formally, $L_{ij} = [e_i, e_j]$
-    $$
-     L = \begin{pmatrix}
-               \zvec& L_{12}  & \cdots & L_{1n} \\
-               -L_{12}& \zvec & \cdots & L_{2n} \\
-               \vdots &       & \ddots & \vdots \\
-               -L_{1n}&-L_{2n}& \cdots & \zvec
-        \end{pmatrix}
-    $$
-    \\
-    Recall from before the adjoint map, $\ad{e_1}{} : \fg \to \fg$ to
-    itself.  Can anyone see a matrix representation of $\ad{e1}{}$?
-\end{frame}
-
-\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
-    In order to do math with Lie Algebras on a computer,
-    we would like to represent the Lie Bracket in a matrix form.
-    Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
-    Formally, $L_{ij} = [e_i, e_j]$
-    $$
-     L = \begin{pmatrix}
-         \tikzmark{left}\zvec& L_{12}  & \cdots & L_{1n} \tikzmark{right}\\
-            \DrawBox[thick]
-               -L_{12}& \zvec & \cdots & L_{2n} \\
-               \vdots &       & \ddots & \vdots \\
-               -L_{1n}&-L_{2n}& \cdots & \zvec
-        \end{pmatrix}
-    $$
-    \\
-    Recall from before the adjoint map, $\ad{e_1}{} : \fg \to \fg$ to
-    itself.  Can anyone see a matrix representation of $\ad{e1}{}$?
-\end{frame}
 \begin{frame}
     It's nice to see that we can \emph{encode} the bracket into a matrix
-    representation, but how can we use that encoding to as the Lie Bracket
+    representation, but how can we use that encoding as the Lie Bracket
     ``map''?
     \pause
     \\Notice that we can retrieve information about the bases.
@@ -628,7 +563,7 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
 \begin{frame}{Lie Bracket as Linear Combination of Bases}
     %I had to use uncover here instead of pause because align ``does wicked
     %things too beamer''
-    \uncover<00->{We can write $\br{x}{y}$ as a linear combination their component vectors's
+    \uncover<00->{We can write $\br{x}{y}$ as a linear combination of their component vectors'
 brackets.}
     \uncover<01->{\\Let's look at an example of a 2 dimensional space}
     \uncover<02->{\\Let $x,y \in \fg$ with}
@@ -642,6 +577,77 @@ brackets.}
         \uncover<09->{\\&= w_1v_1L_{11} + w_1v_2L_{12} + w_2v_1L_{21}+ w_2v_2L_{22}}
     \end{align*}
     \uncover<10->{This means that the Lie Bracket is fully described by the matrix, L}
+\end{frame}
+\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
+    Let's take another look at $L$
+    \pause
+    \\Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
+    \\Formally, $L_{ij} = [e_i, e_j]$
+    \pause
+
+    $$
+     L = \begin{pmatrix}
+        L_{11} & L_{12} & \cdots & L_{1n} \\
+        L_{21} & L_{22} & \cdots & L_{2n} \\
+        \vdots &        & \ddots & \vdots \\
+        L_{n1} & L_{n2} & \cdots & L_{nn}
+    \end{pmatrix}
+    $$
+\pause
+What is special about $[e_i,e_i]$?
+\pause
+\\$[e_i,e_i] = \zvec$
+\end{frame}
+\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
+    Let's take another look at $L$
+    \\Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
+    \\Formally, $L_{ij} = [e_i, e_j]$
+    $$
+     L = \begin{pmatrix}
+        \zvec& L_{12} & \cdots & L_{1n} \\
+        L_{21} & \zvec& \cdots & L_{2n} \\
+        \vdots &        & \ddots & \vdots \\
+        L_{n1} & L_{n2} & \cdots & \zvec
+    \end{pmatrix}
+    $$
+\pause
+Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
+\pause
+\\$[e_i, e_j] = -[e_j, e_i]$
+\end{frame}
+\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
+    Let's take another look at $L$
+    \\Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
+    \\Formally, $L_{ij} = [e_i, e_j]$
+    $$
+     L = \begin{pmatrix}
+               \zvec& L_{12}  & \cdots & L_{1n} \\
+               -L_{12}& \zvec & \cdots & L_{2n} \\
+               \vdots &       & \ddots & \vdots \\
+               -L_{1n}&-L_{2n}& \cdots & \zvec
+        \end{pmatrix}
+    $$
+    \\
+    Consider the map $\br{e_1}{\,}: \fg \to \fg$.
+    \\Can anyone see the matrix representation of $\br{e_1}{\,}$?
+\end{frame}
+
+\begin{frame}{The Lie Bracket as a Matrix with Vector entries}
+    Let's take another look at $L$
+    \\Consider the Lie Bracket, with bases $e_1, e_2, \dots, e_n$
+    \\Formally, $L_{ij} = [e_i, e_j]$
+    $$
+     L = \begin{pmatrix}
+         \tikzmark{left}\zvec& L_{12}  & \cdots & L_{1n} \tikzmark{right}\\
+            \DrawBox[thick]
+               -L_{12}& \zvec & \cdots & L_{2n} \\
+               \vdots &       & \ddots & \vdots \\
+               -L_{1n}&-L_{2n}& \cdots & \zvec
+        \end{pmatrix}
+    $$
+    \\
+    Consider the map $\br{e_1}{\,}: \fg \to \fg$.
+    \\Can anyone see the matrix representation of $\br{e_1}{\,}$?
 \end{frame}
 \begin{frame}{Generalizing the Lie Bracket}
     As before, we'll investigate the 2 dimensional example.
@@ -722,7 +728,7 @@ brackets.}
     What does the the cross product on $\RR^3$ look like in this form?
     \pause
     \\$\br{e_1}{e_2}=e_3$
-    \\$\br{e_1}{e_3}=e_2$
+    \\$\br{e_1}{e_3}=-e_2$
     \\$\br{e_2}{e_3}=e_1$
     \pause
     $$
@@ -738,9 +744,8 @@ brackets.}
 \begin{frame}{$\h_3$'s Lie Bracket}
     How could the three dimensional Heisenberg Algebra be represented?
     \pause
-    \\$\h_3$ is two-step nilpotent
-    \pause
-    \\$\br{\br{x}{y}}{z} \ \forall x,y,z \in \h_3$
+        $\br{e_1}{e_2}=e_3$ for bases $e_1, e_2, e_3 \in \h_3$
+        \\And all other brackets zero
     \pause
     $$
     \begin{pmatrix}
