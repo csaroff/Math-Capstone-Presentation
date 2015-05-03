@@ -1,0 +1,126 @@
+% Matrix Representaion of j-maps slides
+% format: latex
+% last changed: 1 may 2015
+
+\documentclass{beamer}
+
+\usepackage{amsmath,amsfonts,amssymb,graphicx}
+
+\usetheme{Warsaw}
+
+\newcommand{\br}[2]{\left[#1,#2\right]}
+\newcommand{\bre}{\br{\ }{\,}}
+\newcommand{\ds}{\oplus}
+\newcommand{\inp}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\inpe}{\inp{\ }{\,}}
+\newcommand{\lal}[1]{\mathfrak{#1}}
+\newcommand{\lan}{\lal{n}}
+\newcommand{\lav}{\lal{v}}
+\newcommand{\laz}{\lal{z}}
+\newcommand{\R}{\mathbb{R}}
+
+\renewcommand{\span}[1]{\text{span}\left\{#1\right\}}
+
+\begin{document}
+% You should be able to just copy and paste these frames where you want
+% them to go.
+\begin{frame}{Matrix representation of the $j$-maps}
+Let $\lan = \lav \ds \laz$ be a 2-step nilpotent Lie algebra.
+\pause
+
+\
+
+Recall that the Lie bracket on a 2-step nilpotent Lie algebra is a bilinear
+map $\bre :\lav \times \lav \to \laz$.
+\pause
+
+\
+
+
+For every $z \in \laz$, one can define a linear transformation 
+$j_z :\lav \to \lav$ by the identity
+$$
+\inp{y}{j_z(x)}_\lav = \inp{z}{\br{x}{y}}_\laz.
+$$
+\pause
+
+We can use the matrix representations of $\inpe_\lav$ and $\bre$ to find a
+matrix representation for $j_z$.
+\end{frame}
+
+\begin{frame}{Matrix representation of the $j$-maps}
+By linearity, we will know how to construct any $j$-map, if we know the
+$j$-maps corresponding to basis vectors of $\laz$. 
+\pause
+
+\
+
+Suppose $\laz = \span{z_1,z_2,\hdots,z_m}$.
+\pause
+Then for any $z_k$, the $j$-map $j_{z_k} :\lav \to \lav$ is given by
+\begin{eqnarray*}
+\inp{y}{j_{z_k}(x)}_\lav	& = & \inp{z_k}{\br{x}{y}}_\laz \\ \pause
+y^T E (J_{z_k}x)		& = & z_k^T (x^TLy) \\ \pause
+y^T (E J_{z_k}) x		& = & y^T(L^k)^T x
+\end{eqnarray*}
+taking advantage of some clever stack-matrix manipulations.
+\end{frame}
+
+\begin{frame}{Matrix representation of the $j$-maps}
+Since $y^T(EJ_{z_k})x = y^T(L^k)^Tx$ for arbitrary $x$ and $y$ in $\lav$, we
+deduce that $EJ_{z_k} = (L^k)^T$.
+\pause
+
+\
+
+Since $\det(E) \neq 0$, we may solve for $J_{z_k}$ to obtain
+\pause
+$$
+J_{z_k} = E^{-1}(L^k)^T \in \R^{n \times n}.
+$$
+\pause
+
+If $z = \zeta_1z_1 + \zeta_2z_2 + \cdots + \zeta_mz_m$, then the map
+$j_z$ is represented by the matrix
+\pause
+$$
+J_z = \zeta_1J_{z_1} + \zeta_2J_{z_2} + \cdots + \zeta_mJ_{z_m}.
+$$
+\end{frame}
+
+\begin{frame}{The matrix $J$ as a stack}
+The $j$-maps of a 2-step nilpotent Lie algebra can be described by a stack
+of matrices of the same type as $L$.
+\pause
+
+\
+
+Indeed, if we let $J^k = J_{z_k}$,
+\pause
+then
+$$
+J = \begin{pmatrix}
+J^1 \\ J^2 \\ \vdots \\ J^m
+\end{pmatrix}
+$$
+is an $(m \times 1)$ stack of $(n \times n)$ matrices.
+\pause
+Then for $z = (\zeta_1,\zeta_2,\hdots,\zeta_m)^T \in \laz$, the map $j_z$ is 
+represented by
+\pause
+$$
+J_z = z^TJ.
+$$
+\end{frame}
+
+\begin{frame}{Some Examples}
+\begin{center}
+{\it to be done...}
+\end{center}
+
+\
+
+We wrote some code in Sage to help us compute the $j$-maps for a couple of
+interesting Lie algebras.
+\end{frame}
+\end{document}
