@@ -2,7 +2,7 @@
 % format: latex
 % last changed: 1 may 2015
 
-\documentclass{beamer}
+\documentclass[11]{beamer}
 
 \usepackage{amsmath,amsfonts,amssymb,graphicx}
 
@@ -45,6 +45,19 @@ $$
 \pause
 
 We can use the matrix representations of $\inpe_\lav$ and $\bre$ to find a
+matrix representation for $j_z$.
+\end{frame}
+
+\begin{frame}{Matrix representation of the $j$-maps}
+Let $\lan$ be a 2-step nilpotent Lie Algebra with $\lav$ as the non-center and $\laz$ as the center.\\
+Recall that the Lie bracket on a 2-step nilpotent Lie algebra is a bilinear
+map $\bre :\lav \times \lav \to \laz$.\\
+So for every $z \in \laz$, one can define a linear transformation 
+$j_z :\lav \to \lav$ by the identity
+$$
+\inp{y}{j_z(x)}_\lav = \inp{z}{\br{x}{y}}_\laz.
+$$
+We can then use the same methods as before to construct matrix representations of $\inpe_\lav$ and $\bre$ to find a
 matrix representation for $j_z$.
 \end{frame}
 

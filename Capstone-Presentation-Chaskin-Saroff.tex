@@ -1,7 +1,7 @@
 	% An Overview of Lie Algebra's
 % Adapted from Justin Ryan's "Examples of Lie Algebras"
 % Chaskin Saroff and Alexander Jansing	
-% last changed: 29 April 2015
+% last changed: 3 May 2015
 % feel free to make any improvements/changes you wish
 
 \documentclass[9 pt]{beamer}
@@ -60,10 +60,10 @@
 \usepackage{accents}
 
 % title page information
-\title[Encoding the Bracket - An Overview of Lie Agebra's]{Encoding the Bracket - An Overview of Lie Algebras}
+\title[Matrix Computations in Lie Algebras]{Matrix Computations in Lie Algebras}
 \author[A.\, Jansing \,C.\, Saroff]{Alexander Jansing,  Chaskin Saroff}
 \institute[SUNY Oswego]{Oswego State University\\ Department of Mathematics}
-\date{\today}
+\date{5 May 2015}
 
 % new math commands
 \newcommand{\at}[1]{\emph{\alert{#1}}}
@@ -100,6 +100,7 @@
 \newcommand{\lan}{\lal{n}}
 \newcommand{\lav}{\lal{v}}
 \newcommand{\laz}{\lal{z}}
+%\renewcommand{\span}[1]{\text{span}\left\{#1\right\}}
 
 
 % colored text commands
@@ -875,25 +876,97 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
     $$
 \end{frame}
 
-\begin{frame}{$j$-map as a matrix}
-Recall that for any $z \in \laz$, the map $j_z :\lav \to \lav$ is defined by
-the identity
-\begin{equation}
-\inp{y}{j_z(x)}_\lav = \inp{z}{\br{x}{y}}_\laz.\label{jm}
-\end{equation}
-We wish to find a matrix $J_z$ that represents the map $j_z$. Since $j_z$ maps
-$\lav$ to itself, $J_z$ should be a matrix in $\R^{n\times n}$. Rewriting
-\eqref{jm} in matrix form, we get
-    \begin{align*}
-   \inp{y}{j_z(x)}_\lav & = \inp{z}{\br{x}{y}}_\laz \\
-    y^T E (J_z x) 		& =  z^\t(x^TLy) \\
-    y^T (EJ_z) x		& =  z^\t(-y^TLx) \\
-                        & =  - z^\t(y^TLx) \\
-                        & =  -y^T (z^\t L)x \\
-                        & =  y^T (z^\t (-L)) x \\
-                        & =  y^T (z^\t L^\T) x.
-    \end{align*}
+%%%%POSSIBLE REPLACEMENTS FOR COMMENTED OUT SLIDE BELOW%%%%
+\begin{frame}{Matrix representation of the $j$-maps}
+Let $\lan$ be a 2-step nilpotent Lie Algebra with $\lav$ as the non-center and $\laz$ as the center.\\
+Recall that the Lie bracket on a 2-step nilpotent Lie algebra is a bilinear
+map $\bre :\lav \times \lav \to \laz$.\\
+So for every $z \in \laz$, one can define a linear transformation 
+$j_z :\lav \to \lav$ by the identity
+$$
+\inp{y}{j_z(x)}_\lav = \inp{z}{\br{x}{y}}_\laz.
+$$
+We can then use the same methods as before to construct matrix representations of $\inpe_\lav$ and $\bre$ to find a
+matrix representation for $j_z$.
 \end{frame}
+
+\begin{frame}{Matrix representation of the $j$-maps}
+By linearity, we will know how to construct any $j$-map, if we know the
+$j$-maps corresponding to basis vectors of $\laz$. 
+\\
+Suppose $\laz = \text{span} \{ z_1,z_2,\hdots,z_m \}$.
+\\
+Then for any $z_k$, the $j$-map $j_{z_k} :\lav \to \lav$ is given by
+\begin{eqnarray*}
+\inp{y}{j_{z_k}(x)}_\lav	& = & \inp{z_k}{\br{x}{y}}_\laz \\
+y^T E (J_{z_k}x)		& = & z_k^T (x^TLy)\\
+y^T (E J_{z_k}) x		& = & y^T(L^k)^T x
+\end{eqnarray*}
+taking advantage of some clever stack-matrix manipulations.
+\end{frame}
+
+
+\begin{frame}{Matrix representation of the $j$-maps}
+Since $y^T(EJ_{z_k})x = y^T(L^k)^Tx$ for arbitrary $x$ and $y$ in $\lav$, we
+deduce that $EJ_{z_k} = (L^k)^T$.
+\\
+
+Since $\det(E) \neq 0$, we may solve for $J_{z_k}$ to obtain
+\\
+$$
+J_{z_k} = E^{-1}(L^k)^T \in \R^{n \times n}.
+$$
+\\
+
+If $z = \zeta_1z_1 + \zeta_2z_2 + \cdots + \zeta_mz_m$, where $\zeta_i$ are coefficients of the linear combination of $z_i$, then the map $j_z$ is represented by the matrix
+\\
+$$
+J_z = \zeta_1J_{z_1} + \zeta_2J_{z_2} + \cdots + \zeta_mJ_{z_m}.
+$$
+\end{frame}
+
+\begin{frame}{The matrix $J$ as a stack}
+The $j$-maps of a 2-step nilpotent Lie algebra can be described by a stack
+of matrices of the same type as $L$.
+\\
+
+Indeed, if we let $J^k = J_{z_k}$,
+\\
+then
+$$
+J = \begin{pmatrix}
+J^1 \\ J^2 \\ \vdots \\ J^m
+\end{pmatrix}
+$$
+is an $(m \times 1)$ stack of $(n \times n)$ matrices.
+\\
+Then for $z = (\zeta_1,\zeta_2,\hdots,\zeta_m)^T \in \laz$, the map $j_z$ is 
+represented by
+\\
+$$
+J_z = z^TJ.
+$$
+\end{frame}
+%\begin{frame}{$j$-map as a matrix}
+%Recall that for any $z \in \laz$, the map $j_z :\lav \to \lav$ is defined by
+%the identity
+%\begin{equation}
+%\inp{y}{j_z(x)}_\lav = \inp{z}{\br{x}{y}}_\laz.\label{jm}
+%\end{equation}
+%We wish to find a matrix $J_z$ that represents the map $j_z$. Since $j_z$ maps
+%$\lav$ to itself, $J_z$ should be a matrix in $\R^{n\times n}$. Rewriting
+%\eqref{jm} in matrix form, we get
+%    \begin{align*}
+%   \inp{y}{j_z(x)}_\lav & = \inp{z}{\br{x}{y}}_\laz \\
+%    y^T E (J_z x) 		& =  z^\t(x^TLy) \\
+%    y^T (EJ_z) x		& =  z^\t(-y^TLx) \\
+%                        & =  - z^\t(y^TLx) \\
+%                        & =  -y^T (z^\t L)x \\
+%                        & =  y^T (z^\t (-L)) x \\
+%                        & =  y^T (z^\t L^\T) x.
+%    \end{align*}
+%\end{frame}
+
 \begin{frame}
 The equation $y^T(EJ_z)x = y^T(z^\t L^\T) x$ must hold for arbitrary vectors
 $x$ and $y$ in $\lav$, implying that
@@ -927,34 +1000,10 @@ The $j$-map $j_z$ \emph{should} then be $J_z = z^\t J$.
 
 \end{frame}
 
-\section*{}
-\subsection*{}
-
-\begin{frame}{TikZ}
-\smallskip
-
-\smallskip
-
-\end{frame}
-
-\section*{}
-\subsection*{}
-
+\section*{Acknowledgements}
 \begin{frame}{Acknowledgements}
-    \begin{figure}
-    \centering
-    \includegraphics[width=30mm]{lStack.tikz} %input file
-    \label{fig:pic} %label name
-    \caption{\footnotesize The L-Stack} %caption
-    \end{figure}
-    
-        \begin{figure}
-    \centering
-    \includegraphics[width=30mm]{lStackNOTOP.tikz} %input file
-    \label{fig:pic} %label name
-    \caption{\footnotesize The L-Stack} %caption
-    \end{figure}
-
+Justin Ryan for introducing us to Lie Algebras and providing us with Tex Templates, papers and illustrations.\\
+Jonathan Mckibbin for his illustration of the Heisenberg Algebra.
 \end{frame}
 
 \end{document}
