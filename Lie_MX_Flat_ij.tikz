@@ -1,6 +1,6 @@
     \begin{tikzpicture}
 %%%%%%%%%%%%%%%%%L_{i, j}%%%%%%%%%%%%%%%%%%%%%%%
-        \node [right] at (-.65, -.15) {\footnotesize $L_{i, j}$ \normalsize};
+        \node [right] at (-.65, -.15) {\footnotesize $L_{ij}$ \normalsize};
       \foreach \x in {8} {
        \begin{scope}[rotate=\x]
         \draw[red] (.5, .5) -- (1, 1);   %bottom

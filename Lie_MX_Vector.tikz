@@ -1,6 +1,6 @@
     \begin{tikzpicture}
 %%%%%%%%%%%%%%%%%L_{i, j}%%%%%%%%%%%%%%%%%%%%%%%
-        \node [right] at (-.75, .25) {\footnotesize $L_{i, j}$ \normalsize};
+        \node [right] at (-.75, .25) {\footnotesize $L_{ij}$ \normalsize};
         \draw[red] (.5, .5) -- (.5, 3.5);  %legs
         \draw[red] (1, 1) -- (1, 4);
         \draw[red] (0, 1) -- (0, 4);

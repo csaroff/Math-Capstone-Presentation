@@ -142,19 +142,19 @@
 \captionsetup{compatibility=false}
 \usepackage{wrapfig}
 
-\begin{filecontents*}{heis.tikz}
-    \begin{tikzpicture}
-        \draw (-4,4) -- (1,2);
-        \draw (1, 2) -- (4,4);
-        \draw (-1,6) -- (4,4);
-        \draw (-1,6) -- (-4,4);
-        \draw [-] (0,8) -- (0,4);
-        \draw [-] (0,2.4) -- (0,0);
-        %\draw [dashed] (4,0) -- (4,3);
-        \node [right] at (0, 8) {$\fz$};
-        \node [below] at (4,4) {$\fv$};
-    \end{tikzpicture}
-\end{filecontents*}
+%\begin{filecontents*}{heis.tikz}
+%    \begin{tikzpicture}
+%        \draw (-4,4) -- (1,2);
+%        \draw (1, 2) -- (4,4);
+%        \draw (-1,6) -- (4,4);
+%        \draw (-1,6) -- (-4,4);
+%        \draw [-] (0,8) -- (0,4);
+%        \draw [-] (0,2.4) -- (0,0);
+%        %\draw [dashed] (4,0) -- (4,3);
+%        \node [right] at (0, 8) {$\fz$};
+%        \node [below] at (4,4) {$\fv$};
+%    \end{tikzpicture}
+%\end{filecontents*}
 
 \newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
 \newcommand{\DrawBox}[1][]{%
@@ -252,23 +252,23 @@ The product $\bre$ is known as a \emph{\alert{Lie bracket}} on $\fg$.
 
 \subsection{Examples}
 
-\begin{frame}{skew-symmetry}
-By bilinearity, every alternating product is also skew-symmetric.
-Indeed, if [ , ] is alternating then
-        \begin{align}
-            \zvec &= [x + y, x + y] 
-            \\&= [x + y, x] + [x + y, y]
-            \\&= [x,x] + [y, x] + [x + y, y]
-            \\&= [x,x] + [y, x] + [x, y] + [y, y]
-            \\\zvec&=         [x, y] + [y, x]
-            \\\implies [x,y] &= -[y,x]
-        \end{align}
-\pause
-Conversely, if $\bre$ is skew-symmetric, then
-$\br{x}{x}+\br{x}{x} = \zvec$ implies that $2[x,x] = \zvec$. Now we see that this implies $[x,x] = \zvec$
-so long as our field is not of characteristic 2, for in those spaces $2 = 0$ and we
-can deduce nothing about $[x,x]$.
-\end{frame}
+%\begin{frame}{skew-symmetry}
+%By bilinearity, every alternating product is also skew-symmetric.
+%Indeed, if [ , ] is alternating then
+%        \begin{align}
+%            \zvec &= [x + y, x + y] 
+%            \\&= [x + y, x] + [x + y, y]
+%            \\&= [x,x] + [y, x] + [x + y, y]
+%            \\&= [x,x] + [y, x] + [x, y] + [y, y]
+%            \\\zvec&=         [x, y] + [y, x]
+%            \\\implies [x,y] &= -[y,x]
+%        \end{align}
+%\pause
+%Conversely, if $\bre$ is skew-symmetric, then
+%$\br{x}{x}+\br{x}{x} = \zvec$ implies that $2[x,x] = \zvec$. Now we see that this implies $[x,x] = \zvec$
+%so long as our field is not of characteristic 2, for in those spaces $2 = 0$ and we
+%can deduce nothing about $[x,x]$.
+%\end{frame}
 
 \begin{frame}{The Center}
     %\begin{definition}
@@ -304,8 +304,8 @@ And the Jacobi Identity is trivial:
 	& = & \zvec + \zvec + \zvec = \zvec.
 \end{eqnarray*}
 \
-This Algebra is called \emph{Abelian} or \emph{One-Step Nilpotent}.
-
+This Algebra is called \emph{Abelian} or \emph{One-Step Nilpotent}.\\
+Everything in the Abelian case is is the center!
 
 \end{frame}
 
@@ -345,6 +345,7 @@ the Jacobi Identity:
 \blu{(z \cdot y)x} - \grn{(x \cdot y)z}
 \\ & = & 0.
 \end{eqnarray*}
+Is the $\R^3$ non-Abelian case one-step nilpotent, two-step nilpotent, or neither?
 \end{frame}
 
 \begin{frame}{$\h_3$ : The Heisenberg Algebra}
@@ -373,13 +374,13 @@ two-step nilpotent, neither, or both?
 
 \end{frame}
 
-\section{Defining the Lie Algebra}
+\section{Construction}
 
 \subsection{Inner Products}
 
 \begin{frame}{Inner Products}
 An \at{inner product} on a vector space $\fg$ is a non-degenerate, symmetric,
-bilinear, postive definite function $\inpe :\fg \times \fg \to \R$.
+bilinear, positive-definite function $\inpe :\fg \times \fg \to \R$.
 
 \begin{enumerate}
 \item If $\inp{x}{y} = 0$ for all $y \in \fg$, then $x$ must be $\zvec$;
@@ -407,7 +408,8 @@ Let $x, y \in \R^3$; then $x \cdot y = x^Ty$.  The dot product is given by
 \subsection{Encoding Geometry via Algebra}
 
 \begin{frame}{$j$-maps}
-    In order to seperate the interaction between the center and the non-center
+    For two-step nilpotent algebras, we can define a single map that encode the data of both $\big[ , \big]$ and $\langle , \rangle$.\\
+    In order to combine the interaction between the center and the non-center
     of a two-step nilpotent lie algebra, we can define a map, $j_z:\fv \to \fv$.
     \\$j_z$ is defined by the equation
     $$
@@ -493,7 +495,7 @@ Recall that the Lie Bracket is a matrix of vectors.\\
             \put(10,-6){$L^2$}
             \put(10,-8){$L^3$}
             \put(10.25,-10){$\vdots$}
-            \put(10,-12){$L^m$}
+            \put(10,-12){$L^n$}
             \put(-7,-10){$\vdots$}
             \put(-8,-7.75){$\vdots$}
             \put(7.75,-10){$\vdots$}
@@ -510,14 +512,14 @@ Recall that the Lie Bracket is a matrix of vectors.\\
     A vector of matrices.
     $$
     L = \begin{pmatrix}
-        L^1 \\ L^2 \\ \vdots \\ L^m
+        L^1 \\ L^2 \\ \vdots \\ L^n
     \end{pmatrix}.
     $$
 \end{frame}
 \begin{frame}
     $$
     L = \begin{pmatrix}
-        L^1 \\ L^2 \\ \vdots \\ L^k
+        L^1 \\ L^2 \\ \vdots \\ L^n
     \end{pmatrix}.
     $$
     $L$ can then be arranged in an $n \times n$ matrix
@@ -691,6 +693,7 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
     What does Abelian $\RR^3$ look like in this form?
     \\Recall that a Lie Algebra is Abelian if
     \\$\br{x}{y} = \zvec \ \forall x,y \in \RR^3$
+    \pause
     $$
     \begin{pmatrix}
             \zvec & \zvec & \zvec
@@ -705,6 +708,7 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
     \\$\br{e_1}{e_2}=e_3$
     \\$\br{e_1}{e_3}=-e_2$
     \\$\br{e_2}{e_3}=e_1$
+    \pause
     $$
     \begin{pmatrix}
           \zvec & e_3   & -e_2
@@ -714,10 +718,12 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
     $$
     What is the center of $\RR^3$ with the cross product?
 \end{frame}
+
 \begin{frame}{$\h_3$'s Lie Bracket}
     How could the three dimensional Heisenberg Algebra be represented?
         $\br{e_1}{e_2}=e_3$ for bases $e_1, e_2, e_3 \in \h_3$
         \\And all other brackets zero
+        \pause
     $$
     \begin{pmatrix}
           \zvec & e_3   & \zvec
@@ -729,6 +735,7 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
     \pause
     \\The center is the span of $\{e_3\}$.
 \end{frame}
+
 \begin{frame}{Inner Product as a Matrix}
     The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
     \\$\inp{e_i}{e_j} = E_{ij}$
@@ -783,10 +790,11 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
     \pause
     Recall also that the inner product has additional properties.
     \pause
-    \\Postive Definite: $\inp{x}{x} \ge 0 \ \text{and} \ \inp{x}{x}=0 \implies x=\zvec$
-    \\And $\zvec$ canot be a basis vector because it is linearly dependent with all vectors.
-    \\So $\blu{e_{ii}>0}$
+    \\positive-definite: $\inp{x}{x} \ge 0 \ \text{and} \ \inp{x}{x}=0 \implies x=\zvec$
+    \\And $\zvec$ cannot be a basis vector because it is linearly dependent with all vectors.
+    \\So $\blu{E_{ii}>0}$
 \end{frame}
+
 \begin{frame}{Inner Product as a Matrix}
     The Inner Product can be represented by a matrix very similarly to the Lie Bracket.
     \\$\inp{e_i}{e_j} = E_{ij}$
@@ -799,10 +807,11 @@ Given $[e_i, e_j]$, what do we know about $[e_j, e_i]$?
             \end{pmatrix}
     $$
     Recall also that the inner product has additional properties.
-    \\Postive Definite: $\inp{x}{x} \ge 0 \ \text{and} \ \inp{x}{x}=0 \implies x=\zvec$
-    \\And $\zvec$ canot be a basis vector because it is linearly dependent with all vectors.
-    \\So $\blu{e_{ii}>0}$
+    \\positive-definite: $\inp{x}{x} \ge 0 \ \text{and} \ \inp{x}{x}=0 \implies x=\zvec$
+    \\And $\zvec$ cannot be a basis vector because it is linearly dependent with all vectors.
+    \\So $\blu{E_{ii}>0}$
 \end{frame}
+
 \begin{frame}{Dot Product on $\RR^3$}
     The Dot Product can be represented in this way.
     \\$\inp{e_i}{e_j} = 0$
@@ -826,8 +835,7 @@ $j_z :\lav \to \lav$ by the identity
 $$
 \inp{y}{j_z(x)}_\lav = \inp{z}{\br{x}{y}}_\laz.
 $$
-We can then use the same methods as before to construct matrix representations of $\inpe_\lav$ and $\bre$ to find a
-matrix representation for $j_z$.
+We now use the $E$ and $L$ that we just constructed to complete matrices for $J$.
 \end{frame}
 
 \begin{frame}{Matrix representation of the $j$-maps}
@@ -845,7 +853,7 @@ y^T (E J_{z_k}) x		& = & y^T(L^k)^T x
 taking advantage of some clever stack-matrix manipulations.
 \end{frame}
 
-
+\section*{$J$-Maps}
 \begin{frame}{Matrix representation of the $j$-maps}
 Since $y^T(EJ_{z_k})x = y^T(L^k)^Tx$ for arbitrary $x$ and $y$ in $\lav$, we
 deduce that $EJ_{z_k} = (L^k)^T$.
@@ -907,34 +915,158 @@ $$
 %    \end{align*}
 %\end{frame}
 
-\begin{frame}
-The equation $y^T(EJ_z)x = y^T(z^\t L^\T) x$ must hold for arbitrary vectors
-$x$ and $y$ in $\lav$, implying that
+%\begin{frame}
+%The equation $y^T(EJ_z)x = y^T(z^\t L^\T) x$ must hold for arbitrary vectors
+%$x$ and $y$ in $\lav$, implying that
+%$$
+%EJ_z = z^\t L^\T.
+%$$
+%Since $\det(E) \neq 0$, it is invertible and
+%\begin{equation}
+%J_z = E^{-1}(z^\t L^\T).
+%\end{equation}
+%This gives us a method to compute the $j$-map for any $z$ using only matrix
+%computations. Furthermore, if $z = z_k$ is a basis vector of $\laz$, then
+%$z_k^\t L^\T$ is just $(L^k)^\T$. Thus, for basis vectors $z_k$, the map
+%$j_{z_k}$ is represented by the matrix
+%$$
+%J_{z_k} = E^{-1}(L^k)^\T.
+%$$
+%\end{frame}
+%\begin{frame}
+%Since the $j$-maps are linear, knowing how they act on a basis of $\laz$ is
+%good enough. Indeed, we should be able to define a stack of $j$-maps by
+%\begin{equation}
+%J = E^{-1}L^\T.
+%\end{equation}
+%The $j$-map $j_z$ \emph{should} then be $J_z = z^\t J$.
+%\end{frame}
+%
+
+%%Justin's slides from 4MAY2015
+\begin{frame}{Examples of $j$-maps}
+We used Sage to help us compute the $j$-maps for some examples of 2-step nilpotent
+Lie algebras.
+\pause
+
+\
+
+First, consider the Heisenberg algebra $\lal{h}_3$. Restricting $L$ to $\lav$ and
+letting $E$ be the dot product on $\lav$, we obtain
 $$
-EJ_z = z^\t L^\T.
+E = \begin{pmatrix}
+1 & 0 \\ 0 & 1
+\end{pmatrix},\ \ \text{and}\ \ L = \begin{pmatrix}
+0 & 1 \\ -1 & 0
+\end{pmatrix}.
 $$
-Since $\det(E) \neq 0$, it is invertible and
-\begin{equation}
-J_z = E^{-1}(z^\t L^\T).
-\end{equation}
-This gives us a method to compute the $j$-map for any $z$ using only matrix
-computations. Furthermore, if $z = z_k$ is a basis vector of $\laz$, then
-$z_k^\t L^\T$ is just $(L^k)^\T$. Thus, for basis vectors $z_k$, the map
-$j_{z_k}$ is represented by the matrix
+\pause
+The $j$-map $j_{e_3} :\lav \to \lav$ is then given by 
 $$
-J_{z_k} = E^{-1}(L^k)^\T.
+J = E^{-1}L^T = \begin{pmatrix}
+0 & -1 \\ 1 & 0
+\end{pmatrix}.
 $$
-\end{frame}
-\begin{frame}
-Since the $j$-maps are linear, knowing how they act on a basis of $\laz$ is
-good enough. Indeed, we should be able to define a stack of $j$-maps by
-\begin{equation}
-J = E^{-1}L^\T.
-\end{equation}
-The $j$-map $j_z$ \emph{should} then be $J_z = z^\t J$.
+This is easy to verify by hand.
 \end{frame}
 
+\begin{frame}{Examples of $j$-maps}
+Suppose we change the inner product to
+$$
+E = \begin{pmatrix}
+1 & \frac{1}{2} \\[0.5 ex] \frac{1}{2} & 1
+\end{pmatrix}.
+$$
+Then the $j$-map becomes
+$$
+J = \begin{pmatrix}
+-\frac{2}{3} & -\frac{4}{3} \\[0.5 ex] \frac{4}{3} & \frac{2}{3}
+\end{pmatrix}.
+$$
+This is also not too hard to verify by hand.
+\end{frame}
 
+\begin{frame}{Examples of $j$-maps}
+As a second example, consider the 6-dimensional algebra spanned by the vectors
+$\{e_1,e_2,e_3,e_4,z_1,z_2\}$, with non-trivial brackets
+\begin{eqnarray*}
+\br{e_1}{e_3} & = & z_1 \\
+\br{e_2}{e_4} & = & z_1 \\
+\br{e_1}{e_4} & = & z_2 \\
+\br{e_2}{e_3} & = & z_2
+\end{eqnarray*}
+The Lie bracket is represented by the matrices
+$$
+L^1 = \begin{pmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+-1 & 0 & 0 & 0 \\
+0 & -1 & 0 & 0
+\end{pmatrix},\ \ \text{and}\ \ L^2 = \begin{pmatrix}
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+0 & -1 & 0 & 0 \\
+-1 & 0 & 0 & 0 
+\end{pmatrix}.
+$$
+\end{frame}
+
+\begin{frame}{Examples of $j$-maps}
+If $E$ is the dot product, then the $j$-maps for this algebra are 
+$$
+J^1 = \begin{pmatrix}
+0 & 0 & -1 & 0 \\
+0 & 0 & 0 & -1 \\
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0
+\end{pmatrix},\ \ \text{and}\ \ J^2 = \begin{pmatrix}
+0 & 0 & 0 & -1 \\
+0 & 0 & -1 & 0 \\
+0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0 
+\end{pmatrix}.
+$$
+
+\
+
+\pause
+Again, easy to verify by hand. They're just $(L^1)^T$ and $(L^2)^T$.
+\end{frame}
+
+\begin{frame}{Examples of $j$-maps}
+However, if we let $E$ be something a little more exotic, like
+$$
+E = \begin{pmatrix} 
+1 & -\frac{1}{4} & \frac{1}{3} & 0 \\[0.5 ex]
+-\frac{1}{4} & 1 & \frac{1}{2} & \frac{1}{6} \\[0.5 ex]
+\frac{1}{3} & \frac{1}{2} & 1 & 0 \\[0.5 ex]
+0 & \frac{1}{6} & 0 & 1
+\end{pmatrix},
+$$
+which has $\det(E) = \frac{607}{1296} > 0$, 
+\end{frame}
+
+\begin{frame}{Examples of $j$-maps}
+then the $j$-maps become
+$$
+J^1 = \frac{1}{607}\begin{pmatrix}
+-582 & -90 & -936 & -540 \\
+-756 & -192 & -540 & -1152 \\
+1179 & 126 & 582 & 756 \\
+126 & 639 & 90 & 192
+\end{pmatrix}, \ \ \text{and}
+$$
+$$
+J^2 = \frac{1}{607} \begin{pmatrix}
+-90 & -582 & -540 & -936 \\
+-192 & -756 & -1152 & -540 \\
+126 & 1179 & 756 & 582 \\
+639 & 126 & 192 & 90
+\end{pmatrix}.
+$$
+\pause
+You wouldn't want to calculate these by hand!
+\end{frame}
 \section*{Acknowledgements}
 \begin{frame}{Acknowledgements}
 Justin Ryan for introducing us to Lie Algebras and providing us with Tex Templates, papers and illustrations.\\

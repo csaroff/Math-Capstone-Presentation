@@ -12,7 +12,7 @@
 %%%%%%%%%%%%%%%%%L_{i, j}%%%%%%%%%%%%%%%%%%%%%%%
       \foreach \x in {-2} {
        \begin{scope}[rotate=\x]
-        \node [right] at (-4.25, 0) {\footnotesize $L_{i, j}$ \normalsize};
+        \node [right] at (-4.25, 0) {\footnotesize $L_{ij}$ \normalsize};
         \draw[red] (-2.5, .5) -- (-2, 1);   %bottom
         \draw[red] (-2, 1) -- (-2.5, 1.5);
         \draw[red] (-2.5, 1.5) -- (-3, 1);

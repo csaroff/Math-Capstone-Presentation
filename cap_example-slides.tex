@@ -1,0 +1,151 @@
+% Examples of j-maps slides
+% format: latex
+% last changed: 4 may 2015
+
+\documentclass{beamer}
+
+\usepackage{amsmath,amsfonts,amssymb,graphicx}
+
+\usetheme{Warsaw}
+
+\newcommand{\br}[2]{\left[#1,#2\right]}
+\newcommand{\bre}{\br{\ }{\,}}
+\newcommand{\ds}{\oplus}
+\newcommand{\inp}[2]{\left\langle #1,#2\right\rangle}
+\newcommand{\inpe}{\inp{\ }{\,}}
+\newcommand{\lal}[1]{\mathfrak{#1}}
+\newcommand{\lan}{\lal{n}}
+\newcommand{\lav}{\lal{v}}
+\newcommand{\laz}{\lal{z}}
+\newcommand{\R}{\mathbb{R}}
+
+\renewcommand{\span}[1]{\text{span}\left\{#1\right\}}
+
+\begin{document}
+% You should be able to just copy and paste these frames where you want
+% them to go.
+
+\begin{frame}{Examples of $j$-maps}
+We used Sage to help us compute the $j$-maps for some examples of 2-step nilpotent
+Lie algebras.
+\pause
+
+\
+
+First, consider the Heisenberg algebra $\lal{h}_3$. Restricting $L$ to $\lav$ and
+letting $E$ be the dot product on $\lav$, we obtain
+$$
+E = \begin{pmatrix}
+1 & 0 \\ 0 & 1
+\end{pmatrix},\ \ \text{and}\ \ L = \begin{pmatrix}
+0 & 1 \\ -1 & 0
+\end{pmatrix}.
+$$
+\pause
+The $j$-map $j_{e_3} :\lav \to \lav$ is then given by 
+$$
+J = E^{-1}L^T = \begin{pmatrix}
+0 & -1 \\ 1 & 0
+\end{pmatrix}.
+$$
+This is easy to verify by hand.
+\end{frame}
+
+\begin{frame}{Examples of $j$-maps}
+Suppose we change the inner product to
+$$
+E = \begin{pmatrix}
+1 & \frac{1}{2} \\[0.5 ex] \frac{1}{2} & 1
+\end{pmatrix}.
+$$
+Then the $j$-map becomes
+$$
+J = \begin{pmatrix}
+-\frac{2}{3} & -\frac{4}{3} \\[0.5 ex] \frac{4}{3} & \frac{2}{3}
+\end{pmatrix}.
+$$
+This is also not too hard to verify by hand.
+\end{frame}
+
+\begin{frame}{Examples of $j$-maps}
+As a second example, consider the 6-dimensional algebra spanned by the vectors
+$\{e_1,e_2,e_3,e_4,z_1,z_2\}$, with non-trivial brackets
+\begin{eqnarray*}
+\br{e_1}{e_3} & = & z_1 \\
+\br{e_2}{e_4} & = & z_1 \\
+\br{e_1}{e_4} & = & z_2 \\
+\br{e_2}{e_3} & = & z_2
+\end{eqnarray*}
+The Lie bracket is represented by the matrices
+$$
+L^1 = \begin{pmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+-1 & 0 & 0 & 0 \\
+0 & -1 & 0 & 0
+\end{pmatrix},\ \ \text{and}\ \ L^2 = \begin{pmatrix}
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+0 & -1 & 0 & 0 \\
+-1 & 0 & 0 & 0 
+\end{pmatrix}.
+$$
+\end{frame}
+
+\begin{frame}{Examples of $j$-maps}
+If $E$ is the dot product, then the $j$-maps for this algebra are 
+$$
+J^1 = \begin{pmatrix}
+0 & 0 & -1 & 0 \\
+0 & 0 & 0 & -1 \\
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0
+\end{pmatrix},\ \ \text{and}\ \ J^2 = \begin{pmatrix}
+0 & 0 & 0 & -1 \\
+0 & 0 & -1 & 0 \\
+0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0 
+\end{pmatrix}.
+$$
+
+\
+
+\pause
+Again, easy to verify by hand. They're just $(L^1)^T$ and $(L^2)^T$.
+\end{frame}
+
+\begin{frame}{Examples of $j$-maps}
+However, if we let $E$ be something a little more exotic, like
+$$
+E = \begin{pmatrix} 
+1 & -\frac{1}{4} & \frac{1}{3} & 0 \\[0.5 ex]
+-\frac{1}{4} & 1 & \frac{1}{2} & \frac{1}{6} \\[0.5 ex]
+\frac{1}{3} & \frac{1}{2} & 1 & 0 \\[0.5 ex]
+0 & \frac{1}{6} & 0 & 1
+\end{pmatrix},
+$$
+which has $\det(E) = \frac{607}{1296} > 0$, 
+\end{frame}
+
+\begin{frame}{Examples of $j$-maps}
+then the $j$-maps become
+$$
+J^1 = \frac{1}{607}\begin{pmatrix}
+-582 & -90 & -936 & -540 \\
+-756 & -192 & -540 & -1152 \\
+1179 & 126 & 582 & 756 \\
+126 & 639 & 90 & 192
+\end{pmatrix}, \ \ \text{and}
+$$
+$$
+J^2 = \frac{1}{607} \begin{pmatrix}
+-90 & -582 & -540 & -936 \\
+-192 & -756 & -1152 & -540 \\
+126 & 1179 & 756 & 582 \\
+639 & 126 & 192 & 90
+\end{pmatrix}.
+$$
+\pause
+You wouldn't want to calculate these by hand!
+\end{frame}
+\end{document}
